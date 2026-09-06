@@ -1,0 +1,147 @@
+[
+  {
+    "id": "term-smart-economy",
+    "term": "智能经济",
+    "translation": "smart economy",
+    "domain": "时政",
+    "note": "政策语篇用 smart 而非 intelligent",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-ai-plus",
+    "term": "人工智能+",
+    "translation": "\"AI Plus\" initiative",
+    "domain": "时政",
+    "note": "政策名：引号 + 拼出 Plus + Initiative",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-new-forms",
+    "term": "新形态",
+    "translation": "new forms",
+    "domain": "时政",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-deepen-expand",
+    "term": "深化拓展",
+    "translation": "deepen and expand",
+    "domain": "时政",
+    "note": "保留动词对，不要收成单动词",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-nqpf",
+    "term": "新质生产力",
+    "translation": "new quality productive forces",
+    "domain": "时政",
+    "note": "官方定译，不要译成 high-quality productivity",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-local-conditions",
+    "term": "因地制宜",
+    "translation": "in light of local conditions",
+    "domain": "时政",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-found-country",
+    "term": "打江山",
+    "translation": "founding the country",
+    "domain": "时政",
+    "note": "当代语用不是 conquer",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-govern-country",
+    "term": "守江山",
+    "translation": "governing the country",
+    "domain": "时政",
+    "note": "当代语用不是 defend",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-jiangshan",
+    "term": "江山",
+    "translation": "the country",
+    "domain": "时政",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-chinese-mod",
+    "term": "中国式现代化",
+    "translation": "Chinese modernization",
+    "domain": "时政",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-rejuvenation",
+    "term": "中华民族伟大复兴",
+    "translation": "the great rejuvenation of the Chinese nation",
+    "domain": "时政",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-oracle",
+    "term": "Oracle",
+    "translation": "甲骨文中国",
+    "domain": "TEST",
+    "note": "教材用例：验证通用品牌名会被强制改写",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-exadata",
+    "term": "Exadata Database Machine",
+    "translation": "原厂Exadata数据库一体机",
+    "domain": "TEST",
+    "note": "教材用例：最长术语优先",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-oda",
+    "term": "Oracle Database Appliance",
+    "translation": "原厂ODA数据库一体机",
+    "domain": "TEST",
+    "note": "教材用例：避免先匹配到 Oracle",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-llm",
+    "term": "LLM",
+    "translation": "大语言模型",
+    "domain": "技术",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-rag",
+    "term": "RAG",
+    "translation": "检索增强生成",
+    "domain": "技术",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  },
+  {
+    "id": "term-prompt",
+    "term": "prompt",
+    "translation": "提示词",
+    "domain": "技术",
+    "createdAt": "2026-08-28T00:00:00.000Z",
+    "updatedAt": "2026-08-28T00:00:00.000Z"
+  }
+]
