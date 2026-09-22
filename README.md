@@ -15,13 +15,7 @@
 
 原教材用的是 Dify + Oracle + DeepSeek。这里改成 Next.js 网页 + 本地 JSON 术语表 + MiniMax API，打开就能用。
 
-## 放到自己的 GitHub，再在本机跑
-
-这次开发发生在 Cursor 云端工程里，远程不是你的 GitHub。要自己持有代码，按下面做。
-
-个人仓库：[zyy030920/waffo-test](https://github.com/zyy030920/waffo-test)。云端环境没有你的 GitHub 登录，不能代你推送。请在**已经登录 GitHub 的本机**把 `main` 推上去。
-
-不要把 `.env.local`、API Key、或任何访问令牌推进仓库。`.gitignore` 已经忽略 `.env*`。
+## 放到自己的 GitHub
 
 ### 1. 本机已有这份代码时
 
