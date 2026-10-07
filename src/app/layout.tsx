@@ -1,44 +1,35 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Noto_Sans_SC, Noto_Serif_SC } from "next/font/google";
 
 import { AppShell } from "@/components/app-shell";
+import { LocaleProvider } from "@/lib/locale";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
 
-const sans = Noto_Sans_SC({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
-
-const heading = Noto_Serif_SC({
-  variable: "--font-serif-sc",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-});
-
-const mono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "对词 · 多 Agent 时政翻译",
-  description: "Planner、术语、Translator、Style、Risk 五 Agent 流水，MiniMax 生成，译者签发。",
+  title: "合译 — 中英互译",
+  description: "合译：五智能体中英互译工坊。",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="zh-CN"
-      className={`${sans.variable} ${heading.variable} ${mono.variable} h-full antialiased`}
-    >
-      <body className="flex min-h-full flex-col">
+    <html lang="zh-CN" className="h-full antialiased" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="flex min-h-full flex-col bg-black text-white" suppressHydrationWarning>
         <TooltipProvider>
-          <AppShell>{children}</AppShell>
-          <Toaster theme="light" />
+          <LocaleProvider>
+            <AppShell>{children}</AppShell>
+            <Toaster theme="dark" />
+          </LocaleProvider>
         </TooltipProvider>
       </body>
     </html>

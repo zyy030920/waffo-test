@@ -1,3 +1,5 @@
+import type { ProviderId } from "./providers";
+
 export type TranslateDirection = "en-zh" | "zh-en";
 
 export type GlossaryTerm = {
@@ -21,19 +23,21 @@ export type TermMatch = {
 
 export type ClientModelSettings = {
   apiKey: string;
-  region: "cn" | "global" | "custom";
+  provider: ProviderId;
   customBaseUrl: string;
   model: string;
   temperature: number;
 };
 
-export const DEFAULT_DOMAINS = ["时政", "TEST", "通用", "技术"] as const;
+export const DEFAULT_DOMAINS = ["通用", "技术", "商务", "法律", "学术", "文学", "时政", "机构", "缩略词"] as const;
 
 export type AgentId = "planner" | "terminology" | "translator" | "style" | "risk";
 
 export type PlannerOutput = {
   source_text: string;
   register: string;
+  audience: string;
+  fact_anchors: string[];
   key_terms: { zh: string; en_options: string[]; risk: string }[];
   syntactic_features: string[];
   expected_translation_strategy: string;
@@ -63,6 +67,53 @@ export type RiskFinding = {
 export type RiskOutput = {
   findings: RiskFinding[];
   overall: string;
+};
+
+export type PracticePlanner = {
+  function: string;
+  audience: string;
+  equivalence: string;
+  challenges: string[];
+};
+
+export type PracticeTermPair = {
+  source: string;
+  reference: string;
+  student: string;
+  note: string;
+};
+
+export type PracticeTerminology = {
+  pairs: PracticeTermPair[];
+};
+
+export type PracticeDiffItem = {
+  sourceSpan: string;
+  reference: string;
+  student: string;
+  issue: string;
+};
+
+export type PracticeDiff = {
+  overall: string;
+  items: PracticeDiffItem[];
+};
+
+export type PracticeContrast = {
+  sourceSpan: string;
+  reference: string;
+  student: string;
+  merit: string;
+  lesson: string;
+};
+
+export type PracticeAppreciation = {
+  overall: string;
+  contrasts: PracticeContrast[];
+};
+
+export type PracticeRisk = RiskOutput & {
+  advice: string;
 };
 
 export const MINIMAX_ENDPOINTS = {

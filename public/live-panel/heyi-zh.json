@@ -1,0 +1,246 @@
+{
+  "meta": { "title": "合译 · 五智能体", "lang": "zh-CN" },
+  "canvas": { "width": 1200, "height": 620, "duration": 16, "fps": 30, "preroll": 2 },
+  "theme": {
+    "preset": "terminal-dark",
+    "fontSize": 16,
+    "lineHeight": 24,
+    "colors": {
+      "bg": "#050505",
+      "bar": "#121212",
+      "line": "#3d3d3d",
+      "line2": "#2a2a2a",
+      "dim": "#8a8a8a",
+      "fg": "#f2f2f2",
+      "wh": "#ffffff",
+      "cy": "#e8e8e8",
+      "bl": "#cfcfcf",
+      "gr": "#bdbdbd",
+      "pu": "#d6d6d6",
+      "ye": "#f0f0f0",
+      "hl": "#1c1c1c",
+      "dots": "#4a4a4a"
+    }
+  },
+  "clock": { "start": "00:00:00", "rate": 1 },
+  "titlebar": { "text": "合译 · 五智能体工坊 · 实况" },
+  "credit": {
+    "text": "live-panel · motion after @thedelost · 计数为示意",
+    "y": 608
+  },
+  "machines": {
+    "seq": {
+      "type": "cycle",
+      "period": 3.2,
+      "t0": 0,
+      "log": { "who": "工坊", "c": "wh" },
+      "values": [
+        { "t": "0", "m": "规划写入翻译护照", "g": "语域 · 读者 · 锚点" },
+        { "t": "1", "m": "术语只锁已审核条目", "g": "最长匹配优先" },
+        { "t": "2", "m": "翻译按约束起草", "g": "不编造官方译名" },
+        { "t": "3", "m": "语体润色但不改事实", "g": "术语保持锁定" },
+        { "t": "4", "m": "风险扫描六类后待签", "g": "译员签发才交付" }
+      ]
+    },
+    "planner": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 0,
+      "busy": "立护照",
+      "done": ["护照已立"],
+      "phase": 0
+    },
+    "terms": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 3.2,
+      "busy": "对齐术语",
+      "done": ["术语已锁"],
+      "phase": 1
+    },
+    "draft": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 6.4,
+      "busy": "约束起草",
+      "done": ["初稿已出"],
+      "phase": 2
+    },
+    "style": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 9.6,
+      "busy": "校审语体",
+      "done": ["语体已过"],
+      "phase": 3
+    },
+    "risk": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 12.8,
+      "busy": "扫描风险",
+      "done": ["待译员签"],
+      "phase": 4
+    }
+  },
+  "elements": [
+    {
+      "type": "text",
+      "x": 0,
+      "w": 1200,
+      "y": 64,
+      "align": "center",
+      "ls": 1,
+      "runs": [
+        { "t": "原文", "c": "dim" },
+        { "t": "  →  ", "c": "dim" },
+        { "t": "规划", "c": "wh", "b": 1 },
+        { "t": " · 术语 · 翻译 · 语体 · 风险", "c": "fg" },
+        { "t": "  →  ", "c": "dim" },
+        { "t": "人工签发", "c": "wh", "b": 1 }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 40,
+      "y": 96,
+      "w": 200,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "0" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "01  规划", "c": "wh", "b": 1 },
+        { "t": "翻译护照", "c": "dim" },
+        { "runs": [{ "v": "planner" }] }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 268,
+      "y": 96,
+      "w": 200,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "1" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "02  术语", "c": "wh", "b": 1 },
+        { "t": "已审核才锁定", "c": "dim" },
+        { "runs": [{ "v": "terms" }] }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 496,
+      "y": 96,
+      "w": 200,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "2" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "03  翻译", "c": "wh", "b": 1 },
+        { "t": "约束起草", "c": "dim" },
+        { "runs": [{ "v": "draft" }] }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 724,
+      "y": 96,
+      "w": 200,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "3" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "04  语体", "c": "wh", "b": 1 },
+        { "t": "不改事实", "c": "dim" },
+        { "runs": [{ "v": "style" }] }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 952,
+      "y": 96,
+      "w": 208,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "4" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "05  风险", "c": "wh", "b": 1 },
+        { "t": "六类扫描", "c": "dim" },
+        { "runs": [{ "v": "risk" }] }
+      ]
+    },
+    {
+      "type": "path",
+      "points": [[240, 180], [268, 180]],
+      "color": "line",
+      "width": 2,
+      "flow": { "period": 1.6, "offsets": [0], "color": "wh", "tail": 3 }
+    },
+    {
+      "type": "path",
+      "points": [[468, 180], [496, 180]],
+      "color": "line",
+      "width": 2,
+      "flow": { "period": 1.6, "offsets": [0.4], "color": "wh", "tail": 3 }
+    },
+    {
+      "type": "path",
+      "points": [[696, 180], [724, 180]],
+      "color": "line",
+      "width": 2,
+      "flow": { "period": 1.6, "offsets": [0.8], "color": "wh", "tail": 3 }
+    },
+    {
+      "type": "path",
+      "points": [[924, 180], [952, 180]],
+      "color": "line",
+      "width": 2,
+      "flow": { "period": 1.6, "offsets": [1.2], "color": "wh", "tail": 3 }
+    },
+    {
+      "type": "log",
+      "x": 40,
+      "y": 300,
+      "w": 1120,
+      "rows": 5,
+      "padTop": 14,
+      "padBottom": 24,
+      "padLeft": 16,
+      "title": "会话日志",
+      "titleX": 28,
+      "titleW": 160,
+      "cols": [
+        { "key": "time", "x": 0 },
+        { "key": "who", "x": 110 },
+        { "key": "m", "x": 200 },
+        { "key": "g", "x": 760 }
+      ]
+    }
+  ]
+}

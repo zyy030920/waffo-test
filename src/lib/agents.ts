@@ -1,8 +1,10 @@
+import { sourceLang, targetLang } from "./direction";
 import type {
   PlannerOutput,
   RiskOutput,
   StyleOutput,
   TermMatch,
+  TranslateDirection,
   TranslatorDraft,
 } from "./types";
 import { formatMatchedTerms } from "./glossary";
@@ -16,26 +18,50 @@ export const RISK_CATEGORIES = [
   "幻觉 / 来源错误",
 ] as const;
 
-export function plannerMessages(source: string, matches: TermMatch[]) {
+function plannerBrief(planner: PlannerOutput | null) {
+  if (!planner) return "（尚无翻译护照）";
+  return [
+    `语域：${planner.register}`,
+    `读者：${planner.audience || "未标明"}`,
+    `事实锚点：${planner.fact_anchors?.join("；") || "无"}`,
+    `策略：${planner.expected_translation_strategy}`,
+  ].join("\n");
+}
+
+function ragBlock(rag?: string) {
+  if (!rag?.trim()) return "";
+  return `\n\n参考知识（只约束方法，不得据此添加源文没有的事实）：\n${rag.trim()}`;
+}
+
+export function plannerMessages(
+  source: string,
+  domain: string,
+  direction: TranslateDirection,
+  rag?: string,
+) {
   return [
     {
       role: "system" as const,
       content:
-        "你是时政翻译规划助手。只输出一个 JSON 对象，不要 Markdown，不要解释。",
+        "你是翻译规划助手。先出翻译护照，不要直接翻译。只输出一个 JSON 对象，不要 Markdown，不要解释。",
     },
     {
       role: "user" as const,
-      content: `对以下中文源文做翻译前分析。术语表已命中：
-${formatMatchedTerms(matches)}
+      content: `业务域：${domain || "通用"}
+方向：${sourceLang(direction)} → ${targetLang(direction)}（只做中英互译）
+
+对源文做翻译前分析。先锁定事实，再谈策略。事实锚点包括日期、数字、专名、机构、职务、引语、否定与逻辑关系。${ragBlock(rag)}
 
 输出 JSON：
 {
   "source_text": "...",
   "register": "文本类型与语域",
+  "audience": "目标读者",
+  "fact_anchors": ["必须保住的事实"],
   "key_terms": [{"zh":"...","en_options":["..."],"risk":"high|medium|low — 说明"}],
   "syntactic_features": ["..."],
   "expected_translation_strategy": "...",
-  "verification_sources": ["应核验的权威源"]
+  "verification_sources": ["应核验的来源类型"]
 }
 
 源文：
@@ -48,16 +74,20 @@ export function translatorMessages(
   source: string,
   matches: TermMatch[],
   variant: TranslatorDraft["variant"],
+  planner: PlannerOutput | null,
+  domain: string,
+  direction: TranslateDirection,
+  rag?: string,
 ) {
   if (variant === "p1") {
     return [
       {
         role: "system" as const,
-        content: "你是翻译助手。只输出英文译文，不要解释。",
+        content: `你是中英翻译助手。只把源文从${sourceLang(direction)}译成${targetLang(direction)}。只输出译文，不要解释。`,
       },
       {
         role: "user" as const,
-        content: `请将以下内容翻译成英文：\n${source}`,
+        content: `请翻译：\n${source}`,
       },
     ];
   }
@@ -66,12 +96,11 @@ export function translatorMessages(
     return [
       {
         role: "system" as const,
-        content:
-          "你是一名专业中英时政翻译。只输出适合中国政府官方英文文件的译文，不要解释。",
+        content: `你是${domain || "通用"}领域的中英专业译者。只把源文从${sourceLang(direction)}译成${targetLang(direction)}。只输出译文，不要解释。`,
       },
       {
         role: "user" as const,
-        content: `请将以下内容翻译成适合中国政府官方英文文件的英语：\n${source}`,
+        content: `按该领域常见发表语体翻译：\n${source}`,
       },
     ];
   }
@@ -80,23 +109,29 @@ export function translatorMessages(
     {
       role: "system" as const,
       content: [
-        "【Role】You are a senior Chinese-to-English political translator, familiar with official English versions of China's Government Work Report and State Council policy documents.",
-        "【Task】Translate into English suitable for an official Chinese government policy document. Produce ONE primary translation.",
-        "【Audience】International readers of Chinese government policy: journalists, researchers, diplomats.",
+        "【Role】You are a senior translator working under glossary lock and a translation passport.",
+        `【Task】Produce ONE primary ${targetLang(direction)} translation of the ${sourceLang(direction)} source. Chinese↔English only. Do not explain.`,
         "【Constraints】",
-        "1. Prioritize established official terminology from the glossary below. If uncertain, mark [VERIFY] after that term — do not invent.",
-        "2. Preserve political and policy meaning. Do not soften modality.",
-        "3. Do not add explanations not in the source. Do not omit political commitments.",
-        "4. Maintain formal, concise register.",
-        "5. For Chinese sentences without explicit subjects, supply We + will/must/should consistent with the source stance.",
-        "6. Policy names ending in + (人工智能+, 互联网+) are named initiatives: quotation marks, capitalization, append Initiative if appropriate.",
-        "只输出英文译文。不要标题。",
+        "1. Mandatory glossary renderings must be used exactly. If a high-risk name has no glossary hit, mark [VERIFY] — do not invent an official name.",
+        "2. Preserve fact anchors: dates, numbers, names, titles, quotes, negation, and logical relations.",
+        "3. Do not add claims that are not in the source. Do not drop commitments or hedges.",
+        "4. Follow the passport register and audience.",
+        "5. Language polish may not override locked terms or fact anchors.",
+        "【Audience】Use the passport audience; if missing, keep a register suitable for publication.",
+        "【Check】Before finishing, confirm facts and locked terms still stand.",
       ].join("\n"),
     },
     {
       role: "user" as const,
-      content: `术语表（必须遵守）：
+      content: `业务域：${domain || "通用"}
+方向：${sourceLang(direction)} → ${targetLang(direction)}
+
+翻译护照：
+${plannerBrief(planner)}
+
+术语表（必须遵守）：
 ${formatMatchedTerms(matches)}
+${ragBlock(rag)}
 
 【Source text】
 ${source}`,
@@ -104,15 +139,24 @@ ${source}`,
   ];
 }
 
-export function styleMessages(source: string, draft: string, matches: TermMatch[]) {
+export function styleMessages(
+  source: string,
+  draft: string,
+  matches: TermMatch[],
+  planner: PlannerOutput | null,
+  rag?: string,
+) {
   return [
     {
       role: "system" as const,
-      content: "你是时政译文语体校审。只输出 JSON，不要 Markdown。",
+      content: "你是译文语体校审。只修订语域、节奏与情态。不得改写事实锚点和强制术语。只输出 JSON。",
     },
     {
       role: "user" as const,
-      content: `对照原文审订英译的语域、对仗、主语与情态。术语必须保持：
+      content: `翻译护照：
+${plannerBrief(planner)}
+
+术语必须保持：
 ${formatMatchedTerms(matches)}
 
 原文：
@@ -120,26 +164,35 @@ ${source}
 
 初稿：
 ${draft}
+${ragBlock(rag)}
 
 输出：
 {
   "register": "语域判断",
   "issues": ["具体问题"],
-  "revised": "修订后的完整英文译文"
+  "revised": "修订后的完整译文"
 }`,
     },
   ];
 }
 
-export function riskMessages(source: string, draft: string, matches: TermMatch[]) {
+export function riskMessages(
+  source: string,
+  draft: string,
+  matches: TermMatch[],
+  planner: PlannerOutput | null,
+  rag?: string,
+) {
   return [
     {
       role: "system" as const,
-      content: "你是时政翻译风险扫描助手。只输出 JSON，不要 Markdown。",
+      content: "你是翻译风险扫描助手。只输出 JSON，不要 Markdown。",
     },
     {
       role: "user" as const,
       content: `用六类风险扫描译文：1 术语错误 2 意义偏移 3 漏译/增译 4 情态/立场错误 5 语体错误 6 幻觉/来源错误。
+护照事实锚点：
+${planner?.fact_anchors?.join("；") || "无"}
 已锁定术语：
 ${formatMatchedTerms(matches)}
 
@@ -148,6 +201,7 @@ ${source}
 
 待审译文：
 ${draft}
+${ragBlock(rag)}
 
 输出：
 {
@@ -164,22 +218,17 @@ findings 必须正好覆盖 1 到 6 类。`,
 export function fallbackPlanner(source: string, matches: TermMatch[]): PlannerOutput {
   return {
     source_text: source,
-    register: "待 MiniMax 分析。当前仅根据术语表做了预拆解。",
+    register: "待模型分析。当前仅根据已有术语表做了预拆解。",
+    audience: "",
+    fact_anchors: [],
     key_terms: matches.map((match) => ({
       zh: match.term,
       en_options: [match.translation],
-      risk: "medium — 来自本地术语表，尚未做权威源交叉核验",
+      risk: "medium — 来自本地术语表，尚未交叉核验",
     })),
-    syntactic_features: source.includes("。")
-      ? ["并列短句", "可能是无主语句"]
-      : ["单句"],
-    expected_translation_strategy:
-      "先锁术语，再补英文主语与情态，政策对位优先于自然英语。",
-    verification_sources: [
-      "中国翻译研究院政府工作报告英译本",
-      "中国政府网英文版",
-      "本地术语表 / 时政域",
-    ],
+    syntactic_features: source.includes("。") ? ["多句"] : ["单句"],
+    expected_translation_strategy: "先锁已审核术语与事实锚点，再生成受控译文，最后由译者签发。",
+    verification_sources: ["本地术语表", "原文事实锚点"],
   };
 }
 
@@ -200,6 +249,6 @@ export function emptyRisk(): RiskOutput {
       evidence: "预览模式未扫描",
       path: "接上 MiniMax 后由 Risk Agent 扫描",
     })),
-    overall: "术语已锁定，完整风险扫描需要 MiniMax。",
+    overall: "已有术语已锁定，完整风险扫描需要 MiniMax。",
   };
 }

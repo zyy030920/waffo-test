@@ -1,111 +1,80 @@
-# 对词 · 多 Agent 时政翻译工坊
+# 合译 · Cowork Translation
 
-主工作台按《生成式AI与当代中国时政翻译》第一单元的工艺：
+中英互译工坊。五个智能体起草、标风险、对照批改；交稿仍由译员签发。
 
-1. **Planner** 拆任务和风险
-2. **Terminology** 用本地术语表锁规范译法
-3. **Translator** 按 R–T–C–A–C 出初稿（可选三 Prompt 对比）
-4. **Style** 校语域
-5. **Risk** 扫六类风险
-6. **人工总签**
+合译不是一键出稿的机器翻译。规划先立翻译护照，术语只锁已审核条目，翻译按约束起草，语体润色但不改事实，风险过六关后再由你签发。练习页把原文、参考译文和自己的译文放在同一张桌上，从翻译批评与鉴赏对照批改，再由你决定要不要写出一篇跟你语体一致、对等更高的优化稿。
 
-模型走 **MiniMax**。没有 Key 时仍可看术语锁定和 Planner 预拆解。
+需要 Node.js 20+ 和 npm。仓库：[zyy030920/waffo-test](https://github.com/zyy030920/waffo-test)。
 
-「快译」页保留术语优先的英译中演示（Oracle 教材用例）。
+工序、文案、术语和密钥约定见 [GUIDELINE.md](./GUIDELINE.md)。
 
-原教材用的是 Dify + Oracle + DeepSeek。这里改成 Next.js 网页 + 本地 JSON 术语表 + MiniMax API，打开就能用。
+## 能做什么
 
-## 放到自己的 GitHub
+- **实战翻译**：中译英 / 英译中。规划 → 术语 → 翻译 → 语体 → 风险 → 译者签发。
+- **翻译练习**：上传原文、参考译文和自己的译文，五智能体批改；点「优化」后再决定要不要产出优化稿。
+- **术语表**：机构名与缩略词已入库。还可上传、从原文与译文提取候选，审核后才写入。
+- **博客**：四类各五篇，从译论抽出工坊用得上的方法，不代替读原书。
+- **一次免费体验**：站点 MiniMax 承担一次五智能体运行。之后在设置填写你自己的密钥（海螺、深度求索、智谱、通义千问，或任意兼容接口）。密钥只存在这台浏览器。
 
-### 1. 本机已有这份代码时
+## 页面
 
-```bash
-cd <项目目录>
-git remote remove origin 2>/dev/null || true
-git remote add origin https://github.com/zyy030920/waffo-test.git
-git branch -M main
-git push -u origin main
-```
+| 路径 | 作用 |
+| --- | --- |
+| `/` | 首页 |
+| `/workshop` | 实战翻译 |
+| `/practice` | 翻译练习 |
+| `/glossary` | 术语表 |
+| `/guide` | 合译流程 |
+| `/faq` | 常见问题 |
+| `/blog` | 博客 |
+| `/settings` | 模型密钥 |
+| `/terms` | 用户协议 |
+| `/privacy` | 隐私政策 |
 
-若 GitHub 提示仓库里已有 README / 第一次提交，用：
+折叠菜单展开后，每一栏都进入对应落地页。练习只从菜单进入，不放在页脚。
 
-```bash
-git pull origin main --allow-unrelated-histories
-# 如有冲突，保留本项目文件后
-git push -u origin main
-```
-
-### 2. 本机还没有代码时
-
-先从 Cursor 把工程下载下来（或复制整个项目文件夹，不要带 `node_modules`、`.next`），再执行上面的 `git remote add` 和 `git push`。
-
-推成功后再克隆：
+## 本机运行
 
 ```bash
 git clone https://github.com/zyy030920/waffo-test.git
 cd waffo-test
+npm install
 ```
 
-需要 Node.js 20+ 和 npm。
-
-### 3. 安装并启动
+复制环境文件（Windows PowerShell 用 `Copy-Item`）：
 
 ```bash
-npm install
 cp .env.example .env.local
 ```
 
-编辑 `.env.local`，填国内 MiniMax Key（也可以不填，先看术语锁定）：
+编辑 `.env.local`，只填**站点体验额度**（设计者自己的 MiniMax Key）。不要把这枚密钥写进仓库。
 
 ```
-MINIMAX_API_KEY=sk-cp-你的密钥
-MINIMAX_BASE_URL=https://api.minimaxi.com/v1
+MINIMAX_API_KEY=
+MINIMAX_BASE_URL=https://api.minimax.io/v1
 MINIMAX_MODEL=MiniMax-M3
 ```
 
-国际账号把 Base URL 改成 `https://api.minimax.io/v1`。也可以不写环境变量，打开应用后到「设置」里粘贴 Key（只存在这台浏览器）。
+国际站用 `https://api.minimax.io/v1`。国内站用 `https://api.minimaxi.com/v1`。不要填 `/anthropic`。
 
 ```bash
 npm run dev
 ```
 
-浏览器打开 [http://127.0.0.1:43173](http://127.0.0.1:43173)。首页是五 Agent 工坊，`/fast` 是术语快译。
+浏览器打开 [http://127.0.0.1:43173](http://127.0.0.1:43173)。
 
-五 Agent 会连续调用 MiniMax，本机要能访问 `api.minimaxi.com`（或国际的 `api.minimax.io`）。
-
-### 4. 以后只在本机改
+使用者自己的密钥在「设置」填写，保存在浏览器本地，不会写入服务器配置。
 
 ```bash
-git add .
-git commit -m "你的说明"
-git push origin main
+npm run build
+npm start
 ```
 
-之后用 Cursor 桌面打开本地的 `waffo-test` 文件夹即可。
+## 不要提交
 
-没有 Key 时也可以：
+- `.env.local` 和任何真实 API Key
+- `node_modules/`、`.next/`
+- `.tmp-extract/`（本地 PDF 抽取缓存）
+- `vendor/live-panel-skill/`（技能源码；运行时副本在 `public/live-panel/`）
 
-- 管理术语表
-- 用教材里的两个 Oracle 用例验证匹配
-- 看到「术语锁定稿」
-
-要出完整译文，在「设置」粘贴 MiniMax API Key，或写入环境变量 `MINIMAX_API_KEY`。国内默认接口是 `https://api.minimaxi.com/v1`，模型默认 `MiniMax-M3`。
-
-## 页面
-
-- `/` 五 Agent 时政工坊
-- `/fast` 术语快译
-- `/glossary` 术语表
-- `/guide` 教材（原文章思路 + 这一版的对照）
-- `/guide/dify` Dify + Oracle + MiniMax 逐步配置
-- `/settings` MiniMax 配置
-
-Oracle 脚本在 `sql/`：建术语表、匹配函数。
-
-术语存在 `data/glossary.json`。预置了教材里的三条 TEST 术语：
-
-| 术语 | 指定译文 |
-| --- | --- |
-| Oracle | 甲骨文中国 |
-| Exadata Database Machine | 原厂Exadata数据库一体机 |
-| Oracle Database Appliance | 原厂ODA数据库一体机 |
+`.gitignore` 已覆盖以上路径。提交前用 `git status` 再看一遍。

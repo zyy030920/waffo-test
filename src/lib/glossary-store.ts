@@ -92,6 +92,43 @@ export async function updateTerm(
   return next;
 }
 
+export async function importTerms(
+  rows: { term?: string; translation?: string; domain?: string; note?: string }[],
+) {
+  const terms = await readGlossary();
+  const now = new Date().toISOString();
+  let added = 0;
+  let skipped = 0;
+
+  for (const row of rows) {
+    const next: GlossaryTerm = {
+      id: crypto.randomUUID(),
+      term: (row.term ?? "").trim(),
+      translation: (row.translation ?? "").trim(),
+      domain: (row.domain ?? "通用").trim() || "通用",
+      note: row.note?.trim() || undefined,
+      createdAt: now,
+      updatedAt: now,
+    };
+    if (!next.term || !next.translation) {
+      skipped += 1;
+      continue;
+    }
+    const duplicated = terms.some(
+      (item) => item.term.toLowerCase() === next.term.toLowerCase() && item.domain === next.domain,
+    );
+    if (duplicated) {
+      skipped += 1;
+      continue;
+    }
+    terms.push(next);
+    added += 1;
+  }
+
+  await writeGlossary(terms);
+  return { added, skipped, terms };
+}
+
 export async function deleteTerm(id: string) {
   const terms = await readGlossary();
   const next = terms.filter((item) => item.id !== id);

@@ -9,11 +9,11 @@ function isLatinWordChar(ch: string | undefined) {
 }
 
 function sourceOf(term: GlossaryTerm, direction: TranslateDirection) {
-  return direction === "zh-en" ? term.translation : term.term;
+  return direction === "zh-en" ? term.term : term.translation;
 }
 
 function targetOf(term: GlossaryTerm, direction: TranslateDirection) {
-  return direction === "zh-en" ? term.term : term.translation;
+  return direction === "zh-en" ? term.translation : term.term;
 }
 
 export function matchTerms(
@@ -21,12 +21,13 @@ export function matchTerms(
   glossary: GlossaryTerm[],
   options: { direction?: TranslateDirection; domain?: string } = {},
 ): TermMatch[] {
-  const direction = options.direction ?? "en-zh";
+  const direction = options.direction ?? "zh-en";
   const domain = options.domain?.trim();
+  const reference = new Set(["通用", "机构", "缩略词"]);
   const candidates = glossary
     .filter((item) => {
       if (!domain || domain === "全部") return true;
-      return item.domain === domain;
+      return item.domain === domain || reference.has(item.domain);
     })
     .map((item) => ({
       item,
@@ -40,13 +41,14 @@ export function matchTerms(
   const matches: TermMatch[] = [];
 
   for (const { item, source, target } of candidates) {
-    const regex = new RegExp(escapeRegExp(source), "gi");
-    let found: RegExpExecArray | null;
-
-    while ((found = regex.exec(input)) !== null) {
-      const start = found.index;
-      const end = start + found[0].length;
       const usesLatin = /[A-Za-z]/.test(source);
+      const caseSensitive = usesLatin && source.length <= 3;
+      const regex = new RegExp(escapeRegExp(source), caseSensitive ? "g" : "gi");
+      let found: RegExpExecArray | null;
+
+      while ((found = regex.exec(input)) !== null) {
+        const start = found.index;
+        const end = start + found[0].length;
 
       if (usesLatin) {
         if (isLatinWordChar(input[start - 1])) continue;

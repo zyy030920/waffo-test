@@ -1,5 +1,5 @@
-import { GuideArticle } from "@/components/guide-article";
+import { HowToUse } from "@/components/how-to-use";
 
 export default function GuidePage() {
-  return <GuideArticle />;
+  return <HowToUse />;
 }

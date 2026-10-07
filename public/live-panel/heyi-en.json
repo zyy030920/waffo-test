@@ -1,0 +1,246 @@
+{
+  "meta": { "title": "Cowork Translation · 5 agents", "lang": "en" },
+  "canvas": { "width": 1200, "height": 620, "duration": 16, "fps": 30, "preroll": 2 },
+  "theme": {
+    "preset": "terminal-dark",
+    "fontSize": 16,
+    "lineHeight": 24,
+    "colors": {
+      "bg": "#050505",
+      "bar": "#121212",
+      "line": "#3d3d3d",
+      "line2": "#2a2a2a",
+      "dim": "#8a8a8a",
+      "fg": "#f2f2f2",
+      "wh": "#ffffff",
+      "cy": "#e8e8e8",
+      "bl": "#cfcfcf",
+      "gr": "#bdbdbd",
+      "pu": "#d6d6d6",
+      "ye": "#f0f0f0",
+      "hl": "#1c1c1c",
+      "dots": "#4a4a4a"
+    }
+  },
+  "clock": { "start": "00:00:00", "rate": 1 },
+  "titlebar": { "text": "cowork translation — five-agent workshop — live" },
+  "credit": {
+    "text": "live-panel · motion after @thedelost · counts are illustrative",
+    "y": 608
+  },
+  "machines": {
+    "seq": {
+      "type": "cycle",
+      "period": 3.2,
+      "t0": 0,
+      "log": { "who": "shop", "c": "wh" },
+      "values": [
+        { "t": "0", "m": "Planner writes the translation passport", "g": "register · reader · anchors" },
+        { "t": "1", "m": "Terminology locks approved terms only", "g": "longest match first" },
+        { "t": "2", "m": "Translator drafts under constraints", "g": "no invented official names" },
+        { "t": "3", "m": "Style polishes without changing facts", "g": "locked terms stay locked" },
+        { "t": "4", "m": "Risk scans six classes, then waits", "g": "human sign-off delivers" }
+      ]
+    },
+    "planner": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 0,
+      "busy": "passport",
+      "done": ["passport set"],
+      "phase": 0
+    },
+    "terms": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 3.2,
+      "busy": "aligning",
+      "done": ["terms locked"],
+      "phase": 1
+    },
+    "draft": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 6.4,
+      "busy": "drafting",
+      "done": ["draft ready"],
+      "phase": 2
+    },
+    "style": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 9.6,
+      "busy": "styling",
+      "done": ["style passed"],
+      "phase": 3
+    },
+    "risk": {
+      "type": "lane",
+      "period": 16,
+      "run": 3.2,
+      "off": 12.8,
+      "busy": "scanning",
+      "done": ["await sign-off"],
+      "phase": 4
+    }
+  },
+  "elements": [
+    {
+      "type": "text",
+      "x": 0,
+      "w": 1200,
+      "y": 64,
+      "align": "center",
+      "ls": 1,
+      "runs": [
+        { "t": "Source", "c": "dim" },
+        { "t": "  →  ", "c": "dim" },
+        { "t": "Planner", "c": "wh", "b": 1 },
+        { "t": " · Terms · Draft · Style · Risk", "c": "fg" },
+        { "t": "  →  ", "c": "dim" },
+        { "t": "Human sign-off", "c": "wh", "b": 1 }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 40,
+      "y": 96,
+      "w": 200,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "0" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "01  Planner", "c": "wh", "b": 1 },
+        { "t": "Translation passport", "c": "dim" },
+        { "runs": [{ "v": "planner" }] }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 268,
+      "y": 96,
+      "w": 200,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "1" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "02  Terms", "c": "wh", "b": 1 },
+        { "t": "Approved only", "c": "dim" },
+        { "runs": [{ "v": "terms" }] }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 496,
+      "y": 96,
+      "w": 200,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "2" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "03  Draft", "c": "wh", "b": 1 },
+        { "t": "Constrained draft", "c": "dim" },
+        { "runs": [{ "v": "draft" }] }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 724,
+      "y": 96,
+      "w": 200,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "3" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "04  Style", "c": "wh", "b": 1 },
+        { "t": "Facts stay intact", "c": "dim" },
+        { "runs": [{ "v": "style" }] }
+      ]
+    },
+    {
+      "type": "box",
+      "x": 952,
+      "y": 96,
+      "w": 208,
+      "h": 168,
+      "color": "dim",
+      "fill": "bar",
+      "sides": "solid",
+      "pad": [16, 16],
+      "when": { "var": "seq.i", "eq": "4" },
+      "then": { "color": "wh", "fill": "hl", "glow": "wh" },
+      "lines": [
+        { "t": "05  Risk", "c": "wh", "b": 1 },
+        { "t": "Six-class scan", "c": "dim" },
+        { "runs": [{ "v": "risk" }] }
+      ]
+    },
+    {
+      "type": "path",
+      "points": [[240, 180], [268, 180]],
+      "color": "line",
+      "width": 2,
+      "flow": { "period": 1.6, "offsets": [0], "color": "wh", "tail": 3 }
+    },
+    {
+      "type": "path",
+      "points": [[468, 180], [496, 180]],
+      "color": "line",
+      "width": 2,
+      "flow": { "period": 1.6, "offsets": [0.4], "color": "wh", "tail": 3 }
+    },
+    {
+      "type": "path",
+      "points": [[696, 180], [724, 180]],
+      "color": "line",
+      "width": 2,
+      "flow": { "period": 1.6, "offsets": [0.8], "color": "wh", "tail": 3 }
+    },
+    {
+      "type": "path",
+      "points": [[924, 180], [952, 180]],
+      "color": "line",
+      "width": 2,
+      "flow": { "period": 1.6, "offsets": [1.2], "color": "wh", "tail": 3 }
+    },
+    {
+      "type": "log",
+      "x": 40,
+      "y": 300,
+      "w": 1120,
+      "rows": 5,
+      "padTop": 14,
+      "padBottom": 24,
+      "padLeft": 16,
+      "title": "session log",
+      "titleX": 28,
+      "titleW": 160,
+      "cols": [
+        { "key": "time", "x": 0 },
+        { "key": "who", "x": 110 },
+        { "key": "m", "x": 200 },
+        { "key": "g", "x": 760 }
+      ]
+    }
+  ]
+}

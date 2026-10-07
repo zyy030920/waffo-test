@@ -1,24 +1,34 @@
+import { isMinimaxEndpoint, normalizeChatBaseUrl } from "./providers";
 import { stripModelNoise } from "./prompts";
-import { MINIMAX_ENDPOINTS } from "./types";
 
-export function resolveBaseUrl(region: "cn" | "global" | "custom", customBaseUrl?: string) {
-  if (region === "custom") {
-    const url = customBaseUrl?.trim().replace(/\/$/, "");
-    if (!url) throw new Error("自定义接口地址不能为空");
-    return url;
+export function normalizeBaseUrl(url: string) {
+  return normalizeChatBaseUrl(url);
+}
+
+function chatBody(options: {
+  model: string;
+  messages: { role: "system" | "user" | "assistant"; content: string }[];
+  temperature?: number;
+  maxTokens?: number;
+  stream: boolean;
+  baseUrl: string;
+}) {
+  const body: Record<string, unknown> = {
+    model: options.model,
+    messages: options.messages,
+    stream: options.stream,
+    temperature: options.temperature ?? 0.2,
+  };
+  if (isMinimaxEndpoint(options.baseUrl)) {
+    body.max_completion_tokens = options.maxTokens ?? 2048;
+    body.thinking = { type: "disabled" };
+  } else {
+    body.max_tokens = options.maxTokens ?? 2048;
   }
-  return MINIMAX_ENDPOINTS[region];
+  return body;
 }
 
-export function resolveApiKey(headerKey?: string | null) {
-  return headerKey?.trim() || process.env.MINIMAX_API_KEY?.trim() || "";
-}
-
-export function defaultModel() {
-  return process.env.MINIMAX_MODEL?.trim() || "MiniMax-M3";
-}
-
-export async function completeMinimax(options: {
+export async function completeChat(options: {
   apiKey: string;
   baseUrl: string;
   model: string;
@@ -32,14 +42,16 @@ export async function completeMinimax(options: {
       Authorization: `Bearer ${options.apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      model: options.model,
-      messages: options.messages,
-      stream: false,
-      temperature: options.temperature,
-      max_completion_tokens: options.maxTokens ?? 2048,
-      thinking: { type: "disabled" },
-    }),
+    body: JSON.stringify(
+      chatBody({
+        model: options.model,
+        messages: options.messages,
+        temperature: options.temperature,
+        maxTokens: options.maxTokens,
+        stream: false,
+        baseUrl: options.baseUrl,
+      }),
+    ),
   });
 
   const payload = (await response.json()) as {
@@ -50,14 +62,17 @@ export async function completeMinimax(options: {
 
   if (!response.ok) {
     throw new Error(
-      payload.error?.message ||
+      explainMinimaxAuthError(payload, options.baseUrl) ||
+        payload.error?.message ||
         payload.base_resp?.status_msg ||
-        `MiniMax 请求失败（${response.status}）`,
+        `模型请求失败（${response.status}）`,
     );
   }
 
   return stripModelNoise(payload.choices?.[0]?.message?.content ?? "");
 }
+
+export const completeMinimax = completeChat;
 
 export function extractJsonObject<T>(text: string): T {
   const cleaned = stripModelNoise(text)
@@ -85,23 +100,25 @@ export async function createMinimaxStream(options: {
       Authorization: `Bearer ${options.apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      model: options.model,
-      messages: options.messages,
-      stream: true,
-      temperature: options.temperature,
-      max_completion_tokens: 4096,
-      thinking: { type: "disabled" },
-    }),
+    body: JSON.stringify(
+      chatBody({
+        model: options.model,
+        messages: options.messages,
+        temperature: options.temperature,
+        maxTokens: 4096,
+        stream: true,
+        baseUrl: options.baseUrl,
+      }),
+    ),
   });
 
   if (!response.ok) {
     const detail = await response.text();
-    throw new Error(extractMinimaxError(detail) || `MiniMax 请求失败（${response.status}）`);
+    throw new Error(extractMinimaxError(detail, options.baseUrl) || `模型请求失败（${response.status}）`);
   }
 
   if (!response.body) {
-    throw new Error("MiniMax 没有返回可读取的数据流");
+    throw new Error("模型没有返回可读取的数据流");
   }
 
   return response.body;
@@ -118,18 +135,16 @@ export async function testMinimaxConnection(options: {
       Authorization: `Bearer ${options.apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      model: options.model,
-      messages: [
-        {
-          role: "user",
-          content: "只回复两个字：就绪",
-        },
-      ],
-      stream: false,
-      max_completion_tokens: 32,
-      thinking: { type: "disabled" },
-    }),
+    body: JSON.stringify(
+      chatBody({
+        model: options.model,
+        messages: [{ role: "user", content: "只回复两个字：就绪" }],
+        temperature: 0,
+        maxTokens: 32,
+        stream: false,
+        baseUrl: options.baseUrl,
+      }),
+    ),
   });
 
   const payload = (await response.json()) as {
@@ -140,7 +155,8 @@ export async function testMinimaxConnection(options: {
 
   if (!response.ok) {
     throw new Error(
-      payload.error?.message ||
+      explainMinimaxAuthError(payload, options.baseUrl) ||
+        payload.error?.message ||
         payload.base_resp?.status_msg ||
         `连接失败（${response.status}）`,
     );
@@ -149,17 +165,42 @@ export async function testMinimaxConnection(options: {
   return payload.choices?.[0]?.message?.content?.trim() || "连接成功";
 }
 
-export function extractMinimaxError(raw: string) {
+export function extractMinimaxError(raw: string, baseUrl?: string) {
   try {
     const parsed = JSON.parse(raw) as {
-      error?: { message?: string };
-      base_resp?: { status_msg?: string };
+      error?: { message?: string; code?: string | number };
+      base_resp?: { status_code?: number; status_msg?: string };
       message?: string;
     };
-    return parsed.error?.message || parsed.base_resp?.status_msg || parsed.message || raw;
+    return (
+      explainMinimaxAuthError(parsed, baseUrl) ||
+      parsed.error?.message ||
+      parsed.base_resp?.status_msg ||
+      parsed.message ||
+      raw
+    );
   } catch {
     return raw.slice(0, 280);
   }
+}
+
+function explainMinimaxAuthError(
+  payload: {
+    error?: { message?: string; code?: string | number };
+    base_resp?: { status_code?: number; status_msg?: string };
+  },
+  baseUrl?: string,
+) {
+  const code = payload.base_resp?.status_code ?? payload.error?.code;
+  const message = `${payload.error?.message ?? ""} ${payload.base_resp?.status_msg ?? ""}`;
+  const invalid = String(code) === "2049" || /invalid\s*api\s*key/i.test(message);
+  if (!invalid) return "";
+
+  const usedChina = /minimaxi\.com/i.test(baseUrl ?? "");
+  if (usedChina) {
+    return "invalid api key (2049)：这枚 Key 打的是国内 api.minimaxi.com。CC Switch 能用的是国际站，请把区域改成「国际」，或把 MINIMAX_BASE_URL 设为 https://api.minimax.io/v1。不要填 /anthropic，那是 Claude 兼容地址。";
+  }
+  return "invalid api key (2049)：Key 未被当前接口接受。国际 Key 用 https://api.minimax.io/v1，不要用 CC Switch 的 /anthropic 地址。";
 }
 
 export async function* iterateSseData(stream: ReadableStream<Uint8Array>) {

@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 
-import { defaultModel, resolveBaseUrl, testMinimaxConnection } from "@/lib/minimax";
+import { testMinimaxConnection } from "@/lib/minimax";
+import { resolveProviderEndpoint } from "@/lib/providers";
+import { hasUsedTrial } from "@/lib/trial";
 
-export async function GET() {
+export async function GET(request: Request) {
   return NextResponse.json({
-    hasEnvKey: Boolean(process.env.MINIMAX_API_KEY?.trim()),
-    defaultModel: defaultModel(),
-    defaultRegion: "cn",
+    hasHostKey: Boolean(process.env.MINIMAX_API_KEY?.trim()),
+    trialUsed: hasUsedTrial(request),
+    trialAvailable: Boolean(process.env.MINIMAX_API_KEY?.trim()) && !hasUsedTrial(request),
   });
 }
 
@@ -14,19 +16,20 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as {
       apiKey?: string;
-      region?: "cn" | "global" | "custom";
+      provider?: string;
       customBaseUrl?: string;
       model?: string;
     };
-    const apiKey = body.apiKey?.trim() || process.env.MINIMAX_API_KEY?.trim();
+    const apiKey = body.apiKey?.trim();
     if (!apiKey) {
-      return NextResponse.json({ error: "请先填写 MiniMax API Key" }, { status: 400 });
+      return NextResponse.json({ error: "请填写你自己的 API Key" }, { status: 400 });
     }
 
+    const endpoint = resolveProviderEndpoint(body);
     const reply = await testMinimaxConnection({
       apiKey,
-      baseUrl: resolveBaseUrl(body.region ?? "cn", body.customBaseUrl),
-      model: body.model?.trim() || defaultModel(),
+      baseUrl: endpoint.baseUrl,
+      model: endpoint.model,
     });
 
     return NextResponse.json({ ok: true, reply });

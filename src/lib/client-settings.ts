@@ -1,12 +1,13 @@
 import { useSyncExternalStore } from "react";
 
+import { getProvider, type ProviderId } from "./providers";
 import type { ClientModelSettings } from "./types";
 
 export const SETTINGS_KEY = "duici.minimax.settings";
 
 export const DEFAULT_CLIENT_SETTINGS: ClientModelSettings = {
   apiKey: "",
-  region: "cn",
+  provider: "minimax-global",
   customBaseUrl: "",
   model: "MiniMax-M3",
   temperature: 0.3,
@@ -21,7 +22,16 @@ function emit() {
 function parseSettings(raw: string | null): ClientModelSettings {
   if (!raw) return DEFAULT_CLIENT_SETTINGS;
   try {
-    return { ...DEFAULT_CLIENT_SETTINGS, ...JSON.parse(raw) };
+    const parsed = JSON.parse(raw) as Partial<ClientModelSettings> & {
+      region?: "cn" | "global" | "custom";
+    };
+    let provider = parsed.provider;
+    if (!provider) {
+      if (parsed.region === "cn") provider = "minimax-cn";
+      else if (parsed.region === "custom") provider = "custom";
+      else provider = "minimax-global";
+    }
+    return { ...DEFAULT_CLIENT_SETTINGS, ...parsed, provider };
   } catch {
     return DEFAULT_CLIENT_SETTINGS;
   }
@@ -49,4 +59,27 @@ export function useClientSettings() {
     () => null,
   );
   return parseSettings(raw);
+}
+
+export function settingsPayload(settings: ClientModelSettings) {
+  const preset = getProvider(settings.provider);
+  return {
+    apiKey: settings.apiKey,
+    provider: settings.provider,
+    customBaseUrl: settings.provider === "custom" ? settings.customBaseUrl : preset.baseUrl,
+    model: settings.model || preset.model,
+  };
+}
+
+export function applyProviderDefaults(
+  settings: ClientModelSettings,
+  provider: ProviderId,
+): ClientModelSettings {
+  const preset = getProvider(provider);
+  return {
+    ...settings,
+    provider,
+    model: preset.model || settings.model,
+    customBaseUrl: provider === "custom" ? settings.customBaseUrl : preset.baseUrl,
+  };
 }

@@ -1,6 +1,9 @@
 import { fallbackPlanner, emptyRisk, emptyStyle, plannerMessages, riskMessages, styleMessages, translatorMessages } from "./agents";
+import { matchDirectionForSource } from "./direction";
+import type { TranslateDirection } from "./types";
 import { applyGlossaryDraft, matchTerms } from "./glossary";
 import { completeMinimax, extractJsonObject } from "./minimax";
+import { ragBrief } from "./rag";
 import type {
   PlannerOutput,
   RiskOutput,
@@ -36,40 +39,41 @@ export async function runAgentPipeline(options: {
   comparePrompts: boolean;
   glossary: Parameters<typeof matchTerms>[1];
   settings: PipelineSettings | null;
+  direction?: TranslateDirection;
   emit: PipelineEmit;
 }) {
   const { source, emit } = options;
-  const matches = matchTerms(source, options.glossary, {
-    direction: "en-zh",
-    domain: options.domain,
-  });
+  const domain = options.domain?.trim() || "通用";
+  const direction = options.direction ?? matchDirectionForSource(source);
+  const matches = matchTerms(source, options.glossary, { direction, domain });
   const locked = applyGlossaryDraft(source, matches);
 
-  emit("agent-start", { agent: "terminology" });
-  emit("agent-done", {
-    agent: "terminology",
-    matches,
-    locked,
-  });
-
   if (!options.settings) {
+    emit("agent-start", { agent: "planner" });
     emit("agent-done", { agent: "planner", output: fallbackPlanner(source, matches) });
+    emit("agent-start", { agent: "terminology" });
+    emit("agent-done", { agent: "terminology", matches, locked });
     emit("done", {
       mode: "preview",
       translation: "",
-      message:
-        "术语与任务拆解已完成。接上 MiniMax 后，Translator / Style / Risk 才会继续跑。",
+      message: "护照与已审核术语已就绪。接上 MiniMax 后，Translator / Style / Risk 才会继续跑。",
     });
     return;
   }
 
   emit("agent-start", { agent: "planner" });
   const planner = await parsePlanner(
-    await runModel(options.settings, plannerMessages(source, matches)),
+    await runModel(
+      options.settings,
+      plannerMessages(source, domain, direction, ragBrief("planner", source, domain)),
+    ),
     source,
     matches,
   );
   emit("agent-done", { agent: "planner", output: planner });
+
+  emit("agent-start", { agent: "terminology" });
+  emit("agent-done", { agent: "terminology", matches, locked });
 
   const variants: TranslatorDraft["variant"][] = options.comparePrompts
     ? ["p1", "p2", "p3"]
@@ -79,7 +83,17 @@ export async function runAgentPipeline(options: {
   for (const variant of variants) {
     const output = await runModel(
       options.settings,
-      translatorMessages(source, matches, variant),
+      translatorMessages(
+        source,
+        matches,
+        variant,
+        planner,
+        domain,
+        direction,
+        [ragBrief("translator", source, domain), ragBrief("terminology", source, domain)]
+          .filter(Boolean)
+          .join("\n"),
+      ),
       1024,
     );
     drafts.push({
@@ -94,7 +108,10 @@ export async function runAgentPipeline(options: {
 
   emit("agent-start", { agent: "style" });
   const style = await parseStyle(
-    await runModel(options.settings, styleMessages(source, primary, matches)),
+    await runModel(
+      options.settings,
+      styleMessages(source, primary, matches, planner, ragBrief("style", source, domain)),
+    ),
     primary,
   );
   emit("agent-done", { agent: "style", output: style });
@@ -102,7 +119,10 @@ export async function runAgentPipeline(options: {
   const candidate = style.revised.trim() || primary;
   emit("agent-start", { agent: "risk" });
   const risk = await parseRisk(
-    await runModel(options.settings, riskMessages(source, candidate, matches)),
+    await runModel(
+      options.settings,
+      riskMessages(source, candidate, matches, planner, ragBrief("risk", source, domain)),
+    ),
   );
   emit("agent-done", { agent: "risk", output: risk });
 
@@ -114,7 +134,13 @@ export async function runAgentPipeline(options: {
 
 function parsePlanner(raw: string, source: string, matches: TermMatch[]): PlannerOutput {
   try {
-    return extractJsonObject<PlannerOutput>(raw);
+    const parsed = extractJsonObject<PlannerOutput>(raw);
+    return {
+      ...fallbackPlanner(source, matches),
+      ...parsed,
+      fact_anchors: Array.isArray(parsed.fact_anchors) ? parsed.fact_anchors : [],
+      audience: parsed.audience || "",
+    };
   } catch {
     return fallbackPlanner(source, matches);
   }
@@ -124,7 +150,7 @@ function parseStyle(raw: string, draft: string): StyleOutput {
   try {
     const parsed = extractJsonObject<StyleOutput>(raw);
     return {
-      register: parsed.register || "正式政策语篇",
+      register: parsed.register || "",
       issues: Array.isArray(parsed.issues) ? parsed.issues : [],
       revised: parsed.revised?.trim() || draft,
     };

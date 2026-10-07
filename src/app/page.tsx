@@ -1,11 +1,5 @@
-import { AgentWorkshop } from "@/components/agent-workshop";
-import { readGlossary } from "@/lib/glossary-store";
+import { HomeLanding } from "@/components/home-landing";
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: Promise<{ q?: string }>;
-}) {
-  const [{ q }, terms] = await Promise.all([searchParams, readGlossary()]);
-  return <AgentWorkshop initialText={q ?? ""} initialTerms={terms} />;
+export default function Page() {
+  return <HomeLanding />;
 }

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Liquid } from "liquid-gooey";
+import { Check, Download, Loader2, Pencil, Plus, Save, Sparkles, Trash2, Upload, X } from "lucide-react";
 import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
@@ -32,8 +33,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
-import type { GlossaryTerm } from "@/lib/types";
+import { loadClientSettings, settingsPayload } from "@/lib/client-settings";
+import { DEFAULT_WORKSHOP_DOMAINS } from "@/lib/examples";
 import { uniqueDomains } from "@/lib/glossary";
+import { loadLastPair } from "@/lib/last-pair";
+import { domainLabel, useLocale } from "@/lib/locale";
+import { SOURCE_ACCEPT, readSourceFile } from "@/lib/read-source";
+import type { GlossaryTerm } from "@/lib/types";
 
 type Draft = {
   term: string;
@@ -42,21 +48,25 @@ type Draft = {
   note: string;
 };
 
-const EMPTY_DRAFT: Draft = {
-  term: "",
-  translation: "",
-  domain: "TEST",
-  note: "",
-};
+type Candidate = { source: string; translation: string; reason?: string; selected: boolean };
 
 export function GlossaryManager() {
+  const { t } = useLocale();
   const [terms, setTerms] = useState<GlossaryTerm[]>([]);
   const [query, setQuery] = useState("");
   const [domain, setDomain] = useState("全部");
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<GlossaryTerm | null>(null);
-  const [draft, setDraft] = useState<Draft>(EMPTY_DRAFT);
+  const [draft, setDraft] = useState<Draft>({ term: "", translation: "", domain: "通用", note: "" });
+  const [mounted, setMounted] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [merging, setMerging] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const [suggesting, setSuggesting] = useState(false);
+  const [extracting, setExtracting] = useState(false);
+  const [pairSource, setPairSource] = useState("");
+  const [pairTranslation, setPairTranslation] = useState("");
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
 
   async function refresh() {
     const response = await fetch("/api/glossary");
@@ -65,20 +75,33 @@ export function GlossaryManager() {
   }
 
   useEffect(() => {
-    refresh().catch(() => toast.error("术语表加载失败"));
+    setMounted(true);
+    const pair = loadLastPair();
+    if (pair) {
+      setPairSource(pair.source);
+      setPairTranslation(pair.translation);
+      if (pair.domain) setDomain(pair.domain);
+    }
+    refresh().catch(() => toast.error(t.loadFail));
   }, []);
 
-  const domains = useMemo(() => ["全部", ...uniqueDomains(terms)], [terms]);
+  const domains = useMemo(() => {
+    const extra = uniqueDomains(terms).filter(
+      (item) => !DEFAULT_WORKSHOP_DOMAINS.includes(item as (typeof DEFAULT_WORKSHOP_DOMAINS)[number]),
+    );
+    return ["全部", ...DEFAULT_WORKSHOP_DOMAINS, ...extra];
+  }, [terms]);
   const visible = terms.filter((item) => {
     const hay = `${item.term} ${item.translation} ${item.note ?? ""}`.toLowerCase();
     const matchedQuery = hay.includes(query.trim().toLowerCase());
     const matchedDomain = domain === "全部" || item.domain === domain;
     return matchedQuery && matchedDomain;
   });
+  const selected = candidates.filter((item) => item.selected);
 
   function openCreate() {
     setEditing(null);
-    setDraft(EMPTY_DRAFT);
+    setDraft({ term: "", translation: "", domain: domain === "全部" ? "通用" : domain, note: "" });
     setOpen(true);
   }
 
@@ -105,27 +128,160 @@ export function GlossaryManager() {
         },
       );
       const payload = (await response.json()) as { error?: string };
-      if (!response.ok) throw new Error(payload.error || "保存失败");
-      toast.success(editing ? "术语已更新" : "术语已加入");
+      if (!response.ok) throw new Error(payload.error || t.saveFail);
+      toast.success(editing ? t.updated : t.added);
       setOpen(false);
       await refresh();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "保存失败");
+      toast.error(error instanceof Error ? error.message : t.saveFail);
     } finally {
       setSaving(false);
     }
   }
 
   async function remove(term: GlossaryTerm) {
-    if (!window.confirm(`删除术语「${term.term}」？`)) return;
+    if (!window.confirm(`${t.deleteConfirm} ${term.term}`)) return;
     const response = await fetch(`/api/glossary/${term.id}`, { method: "DELETE" });
     const payload = (await response.json()) as { error?: string };
     if (!response.ok) {
-      toast.error(payload.error || "删除失败");
+      toast.error(payload.error || t.saveFail);
       return;
     }
-    toast.success("已删除");
+    toast.success(t.deleted);
     await refresh();
+  }
+
+  function parseGlossaryFile(raw: string) {
+    const trimmed = raw.trim();
+    if (trimmed.startsWith("[") || trimmed.startsWith("{")) {
+      const parsed = JSON.parse(trimmed) as
+        | { term?: string; translation?: string; domain?: string; note?: string }[]
+        | { terms?: { term?: string; translation?: string; domain?: string; note?: string }[] };
+      const rows = Array.isArray(parsed) ? parsed : parsed.terms;
+      if (!Array.isArray(rows)) throw new Error(t.emptyGlossary);
+      return rows;
+    }
+    const lines = trimmed.split(/\r?\n/).filter(Boolean);
+    return lines.slice(lines[0]?.includes(",") ? 1 : 0).map((line) => {
+      const [term, translation, domain, note] = line.split(",").map((cell) => cell.trim().replace(/^"|"$/g, ""));
+      return { term, translation, domain, note };
+    });
+  }
+
+  async function importGlossaryFile(file: File) {
+    setImporting(true);
+    try {
+      const rows = parseGlossaryFile(await file.text());
+      const response = await fetch("/api/glossary/import", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ terms: rows }),
+      });
+      const payload = (await response.json()) as { error?: string; added?: number; skipped?: number };
+      if (!response.ok) throw new Error(payload.error || t.emptyGlossary);
+      toast.success(`${t.imported} ${payload.added ?? 0} · ${t.skipped} ${payload.skipped ?? 0}`);
+      await refresh();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : t.emptyGlossary);
+    } finally {
+      setImporting(false);
+    }
+  }
+
+  async function suggestFromFile(file: File) {
+    setSuggesting(true);
+    try {
+      const text = await readSourceFile(file);
+      if (!text.trim()) throw new Error(t.fileIsEmpty);
+      const settings = loadClientSettings();
+      const response = await fetch("/api/terms/suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text,
+          domain: domain === "全部" ? "通用" : domain,
+          ...settingsPayload(settings),
+        }),
+      });
+      const payload = (await response.json()) as {
+        pairs?: { source: string; translation: string; reason?: string }[];
+        error?: string;
+      };
+      if (!response.ok) throw new Error(payload.error || t.detectFail);
+      setCandidates((payload.pairs ?? []).map((pair) => ({ ...pair, selected: false })));
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : t.detectFail);
+    } finally {
+      setSuggesting(false);
+    }
+  }
+
+  async function extractTerms() {
+    if (!pairSource.trim() || !pairTranslation.trim()) {
+      toast.error(t.extractHint);
+      return;
+    }
+    setExtracting(true);
+    try {
+      const settings = loadClientSettings();
+      const response = await fetch("/api/terms/extract", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: pairSource,
+          translation: pairTranslation,
+          domain: domain === "全部" ? "通用" : domain,
+          ...settingsPayload(settings),
+        }),
+      });
+      const payload = (await response.json()) as {
+        pairs?: { source: string; translation: string; reason?: string }[];
+        error?: string;
+      };
+      if (!response.ok) throw new Error(payload.error || t.extractFail);
+      setCandidates((payload.pairs ?? []).map((pair) => ({ ...pair, selected: false })));
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : t.extractFail);
+    } finally {
+      setExtracting(false);
+    }
+  }
+
+  async function saveCandidates() {
+    const chosen = candidates.filter((item) => item.selected && item.source.trim() && item.translation.trim());
+    if (!chosen.length) {
+      toast.error(t.saveToGlossary);
+      return;
+    }
+    setMerging(true);
+    setSaving(true);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 420));
+      for (const candidate of chosen) {
+        const response = await fetch("/api/glossary", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            term: candidate.source,
+            translation: candidate.translation,
+            domain: domain === "全部" ? "通用" : domain,
+            note: candidate.reason || "",
+          }),
+        });
+        if (!response.ok) {
+          const payload = (await response.json()) as { error?: string };
+          throw new Error(payload.error || t.saveFail);
+        }
+      }
+      toast.success(t.saveToGlossary);
+      setCandidates([]);
+      await refresh();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : t.saveFail);
+    } finally {
+      setSaving(false);
+      setMerging(false);
+    }
   }
 
   function exportJson() {
@@ -143,58 +299,182 @@ export function GlossaryManager() {
   return (
     <div className="space-y-6">
       <section className="space-y-3">
-        <p className="text-muted-foreground text-sm tracking-[0.2em]">GLOSSARY</p>
-        <h1 className="font-heading text-3xl md:text-4xl">你自己的术语表</h1>
-        <p className="text-muted-foreground max-w-3xl text-sm leading-7 md:text-base">
-          教材里这张表放在 Oracle 里，由业务同事维护。这里改成本地 JSON，同样按「业务域 + 术语」唯一。
-          先把私域译法写清楚，翻译时就不用每次改提示词。
-        </p>
+        <p className="chip">{t.navGlossary}</p>
+        <h1 className="font-heading text-3xl md:text-4xl">{t.glossaryTitle}</h1>
+        <p className="text-muted-foreground max-w-3xl text-sm leading-7 md:text-base">{t.glossaryHint}</p>
+      </section>
+
+      <section className="space-y-4 rounded-none border border-[color:var(--line)] bg-[color:var(--fill-ghost)] p-4">
+        <div>
+          <h2 className="font-medium">{t.extractTitle}</h2>
+          <p className="text-muted-foreground mt-1 text-sm">{t.extractHint}</p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2">
+          <Textarea
+            value={pairSource}
+            onChange={(event) => setPairSource(event.target.value)}
+            className="min-h-28 bg-background"
+          />
+          <Textarea
+            value={pairTranslation}
+            onChange={(event) => setPairTranslation(event.target.value)}
+            className="min-h-28 bg-background"
+          />
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="outline" onClick={() => void extractTerms()} disabled={extracting}>
+            {extracting ? <Loader2 className="animate-spin" /> : <Sparkles />}
+            {extracting ? t.extracting : t.extractFromPair}
+          </Button>
+          <Button onClick={() => void saveCandidates()} disabled={saving || !selected.length}>
+            {saving ? <Loader2 className="animate-spin" /> : <Save />}
+            {saving ? t.saving : t.saveToGlossary}
+          </Button>
+        </div>
+        {mounted && selected.length ? (
+          <Liquid
+            blur={10}
+            contrast={18}
+            fill="rgba(255,255,255,0.12)"
+            className="relative min-h-14"
+          >
+            {selected.map((candidate, index) => (
+              <Liquid.Item
+                key={`${candidate.source}-${index}`}
+                x={merging ? 72 : index * 36}
+                y={0}
+                transition="bouncy"
+              >
+                <span className="inline-flex rounded-full px-3 py-1 text-sm">{candidate.source}</span>
+              </Liquid.Item>
+            ))}
+          </Liquid>
+        ) : null}
+        {candidates.length
+          ? candidates.map((candidate, index) => (
+              <div key={index} className="grid gap-3 rounded-none border border-[color:var(--line)] p-3 sm:grid-cols-[auto_1fr_1fr]">
+                <input
+                  type="checkbox"
+                  checked={candidate.selected}
+                  aria-label={t.saveToGlossary}
+                  className="mt-2 accent-[var(--seal)]"
+                  onChange={(event) =>
+                    setCandidates((items) =>
+                      items.map((item, i) => (i === index ? { ...item, selected: event.target.checked } : item)),
+                    )
+                  }
+                />
+                <Input
+                  value={candidate.source}
+                  onChange={(event) =>
+                    setCandidates((items) =>
+                      items.map((item, i) => (i === index ? { ...item, source: event.target.value } : item)),
+                    )
+                  }
+                />
+                <div className="space-y-1">
+                  <Input
+                    value={candidate.translation}
+                    onChange={(event) =>
+                      setCandidates((items) =>
+                        items.map((item, i) =>
+                          i === index ? { ...item, translation: event.target.value } : item,
+                        ),
+                      )
+                    }
+                  />
+                  <p className="text-muted-foreground text-xs">{candidate.reason}</p>
+                </div>
+              </div>
+            ))
+          : null}
       </section>
 
       <div className="flex flex-col gap-3 md:flex-row md:items-center">
         <Input
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="搜索术语或译文"
+          placeholder={t.searchTerms}
           className="md:max-w-xs"
         />
-        <Select value={domain} onValueChange={setDomain}>
-          <SelectTrigger className="md:w-40">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {domains.map((item) => (
-              <SelectItem key={item} value={item}>
-                {item}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        {mounted ? (
+          <Select value={domain} onValueChange={setDomain}>
+            <SelectTrigger className="md:w-40">
+              <SelectValue placeholder={t.all} />
+            </SelectTrigger>
+            <SelectContent>
+              {domains.map((item) => (
+                <SelectItem key={item} value={item}>
+                  {domainLabel(t, item)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ) : (
+          <div className="border-input text-muted-foreground flex h-9 items-center rounded-md border px-3 text-sm md:w-40">
+            {domain}
+          </div>
+        )}
         <div className="flex flex-wrap gap-2 md:ml-auto">
+          <label className="inline-flex cursor-pointer">
+            <span className="icon-flow site-nav__cta inline-flex h-9 items-center gap-2">
+              {importing ? <Loader2 className="size-3.5 animate-spin" /> : <Upload className="size-3.5" />}
+              {importing ? t.importing : t.uploadGlossary}
+            </span>
+            <input
+              type="file"
+              accept=".json,.csv,.txt"
+              className="sr-only"
+              disabled={importing}
+              onChange={(event) => {
+                const file = event.target.files?.[0];
+                event.target.value = "";
+                if (file) void importGlossaryFile(file);
+              }}
+            />
+          </label>
+          <label className="inline-flex cursor-pointer">
+            <span className="icon-flow border-input bg-background hover:bg-muted inline-flex h-9 items-center gap-2 rounded-none border px-4 text-sm">
+              {suggesting ? <Loader2 className="size-4 animate-spin" /> : <Upload className="size-4" />}
+              {suggesting ? t.detecting : t.uploadDetect}
+            </span>
+            <input
+              type="file"
+              accept={SOURCE_ACCEPT}
+              className="sr-only"
+              disabled={suggesting}
+              onChange={(event) => {
+                const file = event.target.files?.[0];
+                event.target.value = "";
+                if (file) void suggestFromFile(file);
+              }}
+            />
+          </label>
           <Button variant="outline" onClick={exportJson}>
-            导出 JSON
+            <Download />
+            {t.exportJson}
           </Button>
           <Button onClick={openCreate}>
             <Plus />
-            新增术语
+            {t.addTerm}
           </Button>
         </div>
       </div>
 
       {visible.length === 0 ? (
-        <div className="text-muted-foreground rounded-2xl border border-dashed bg-[color:var(--sheet)] px-6 py-16 text-center text-sm">
-          没有匹配的术语。换个关键词，或新增一条属于你的译法。
+        <div className="text-muted-foreground rounded-none border border-dashed border-[color:var(--line)] bg-[color:var(--fill-ghost)] px-6 py-16 text-center text-sm">
+          {t.emptyGlossary}
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl bg-[color:var(--sheet)] ring-1 ring-foreground/10">
+        <div className="overflow-hidden rounded-none bg-[color:var(--fill-ghost)] ring-1 ring-white/10">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>术语</TableHead>
-                <TableHead>指定译文</TableHead>
-                <TableHead>业务域</TableHead>
-                <TableHead>备注</TableHead>
-                <TableHead className="w-28 text-right">操作</TableHead>
+                <TableHead>{t.termCol}</TableHead>
+                <TableHead>{t.transCol}</TableHead>
+                <TableHead>{t.domainCol}</TableHead>
+                <TableHead>{t.noteCol}</TableHead>
+                <TableHead className="w-28 text-right">{t.actions}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -203,7 +483,7 @@ export function GlossaryManager() {
                   <TableCell className="font-medium">{term.term}</TableCell>
                   <TableCell>{term.translation}</TableCell>
                   <TableCell>
-                    <Badge variant="secondary">{term.domain}</Badge>
+                    <Badge variant="secondary">{domainLabel(t, term.domain)}</Badge>
                   </TableCell>
                   <TableCell className="text-muted-foreground max-w-xs truncate">
                     {term.note || "—"}
@@ -226,14 +506,12 @@ export function GlossaryManager() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{editing ? "编辑术语" : "新增术语"}</DialogTitle>
-            <DialogDescription>
-              同一业务域里术语必须唯一。建议把最长、最完整的专有名词单独成条。
-            </DialogDescription>
+            <DialogTitle>{editing ? t.editTerm : t.newTerm}</DialogTitle>
+            <DialogDescription>{t.termUnique}</DialogDescription>
           </DialogHeader>
           <div className="grid gap-3">
             <div className="space-y-1.5">
-              <Label htmlFor="term">原文术语</Label>
+              <Label htmlFor="term">{t.sourceTerm}</Label>
               <Input
                 id="term"
                 value={draft.term}
@@ -241,7 +519,7 @@ export function GlossaryManager() {
               />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="translation">指定译文</Label>
+              <Label htmlFor="translation">{t.targetTerm}</Label>
               <Input
                 id="translation"
                 value={draft.translation}
@@ -251,7 +529,7 @@ export function GlossaryManager() {
               />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="domain">业务域</Label>
+              <Label htmlFor="domain">{t.domain}</Label>
               <Input
                 id="domain"
                 value={draft.domain}
@@ -259,7 +537,7 @@ export function GlossaryManager() {
               />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="note">备注</Label>
+              <Label htmlFor="note">{t.note}</Label>
               <Textarea
                 id="note"
                 value={draft.note}
@@ -269,10 +547,12 @@ export function GlossaryManager() {
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setOpen(false)}>
-              取消
+              <X />
+              {t.cancel}
             </Button>
             <Button onClick={() => void save()} disabled={saving}>
-              {saving ? "保存中" : "保存"}
+              {saving ? <Loader2 className="animate-spin" /> : <Check />}
+              {saving ? t.saving : t.save}
             </Button>
           </DialogFooter>
         </DialogContent>

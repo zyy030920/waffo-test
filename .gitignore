@@ -19,3 +19,11 @@ Thumbs.db
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# cloned skill (runtime copy lives in public/live-panel)
+vendor/live-panel-skill
+
+# local PDF extracts (not for commit)
+.tmp-extract
+scripts/extract-sources.mjs
+

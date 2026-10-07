@@ -1,147 +1,1756 @@
 [
   {
-    "id": "term-smart-economy",
-    "term": "智能经济",
-    "translation": "smart economy",
-    "domain": "时政",
-    "note": "政策语篇用 smart 而非 intelligent",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "73dd4085-2b32-470d-9abb-fee2054bd856",
+    "term": "欧洲联盟",
+    "translation": "European Union",
+    "domain": "机构",
+    "note": "欧盟 / EU",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-ai-plus",
-    "term": "人工智能+",
-    "translation": "\"AI Plus\" initiative",
-    "domain": "时政",
-    "note": "政策名：引号 + 拼出 Plus + Initiative",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "44cb4290-75fc-4f79-8969-0b19af163e82",
+    "term": "欧盟",
+    "translation": "EU",
+    "domain": "机构",
+    "note": "European Union",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-new-forms",
-    "term": "新形态",
-    "translation": "new forms",
-    "domain": "时政",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "b5d8a42b-d532-4d99-8de0-d10215718d3f",
+    "term": "欧洲共同体",
+    "translation": "European Communities",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-deepen-expand",
-    "term": "深化拓展",
-    "translation": "deepen and expand",
-    "domain": "时政",
-    "note": "保留动词对，不要收成单动词",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "3425cabe-4688-4e10-8485-b04acd6ce273",
+    "term": "欧元区",
+    "translation": "eurozone",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-nqpf",
-    "term": "新质生产力",
-    "translation": "new quality productive forces",
-    "domain": "时政",
-    "note": "官方定译，不要译成 high-quality productivity",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "83409eab-b93e-4359-b590-a304cfaaab4e",
+    "term": "欧洲理事会",
+    "translation": "European Council",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-local-conditions",
-    "term": "因地制宜",
-    "translation": "in light of local conditions",
-    "domain": "时政",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "734a84c8-e047-40b5-9b0b-cf358f9f9c0a",
+    "term": "欧盟理事会",
+    "translation": "Council of the European Union",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-found-country",
-    "term": "打江山",
-    "translation": "founding the country",
-    "domain": "时政",
-    "note": "当代语用不是 conquer",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "692c1b2b-2dde-48f4-807a-cb151e94d4e7",
+    "term": "欧盟委员会",
+    "translation": "European Commission",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-govern-country",
-    "term": "守江山",
-    "translation": "governing the country",
-    "domain": "时政",
-    "note": "当代语用不是 defend",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "9e8b9a60-0265-49f2-bb44-d8155f180a43",
+    "term": "欧洲议会",
+    "translation": "European Parliament",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-jiangshan",
-    "term": "江山",
-    "translation": "the country",
-    "domain": "时政",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "f99a0ae3-dd66-48ea-87ae-48f74dd9faa4",
+    "term": "欧洲法院",
+    "translation": "Court of Justice of the European Union",
+    "domain": "机构",
+    "note": "European Court of Justice",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-chinese-mod",
-    "term": "中国式现代化",
-    "translation": "Chinese modernization",
-    "domain": "时政",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "61912bdc-8a32-49c0-b515-dbf407d21a30",
+    "term": "西欧联盟",
+    "translation": "Western European Union",
+    "domain": "机构",
+    "note": "WEU",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-rejuvenation",
-    "term": "中华民族伟大复兴",
-    "translation": "the great rejuvenation of the Chinese nation",
-    "domain": "时政",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "b22ae2dd-a257-434a-b6d9-7c94efeb362c",
+    "term": "欧洲安全与合作组织",
+    "translation": "Organization for Security and Co-operation in Europe",
+    "domain": "机构",
+    "note": "欧安组织 / OSCE",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-oracle",
-    "term": "Oracle",
-    "translation": "甲骨文中国",
-    "domain": "TEST",
-    "note": "教材用例：验证通用品牌名会被强制改写",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "6debb13b-e5b0-4aaa-a70b-3b8e9eecfa5a",
+    "term": "欧安组织",
+    "translation": "OSCE",
+    "domain": "机构",
+    "note": "Organization for Security and Co-operation in Europe",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-exadata",
-    "term": "Exadata Database Machine",
-    "translation": "原厂Exadata数据库一体机",
-    "domain": "TEST",
-    "note": "教材用例：最长术语优先",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "79d8a11c-3a10-473a-9da9-530f57cef884",
+    "term": "北大西洋公约组织",
+    "translation": "North Atlantic Treaty Organization",
+    "domain": "机构",
+    "note": "北约 / NATO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-oda",
-    "term": "Oracle Database Appliance",
-    "translation": "原厂ODA数据库一体机",
-    "domain": "TEST",
-    "note": "教材用例：避免先匹配到 Oracle",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "5230a9b8-77fd-440a-bea0-7000828d4855",
+    "term": "北约",
+    "translation": "NATO",
+    "domain": "机构",
+    "note": "North Atlantic Treaty Organization",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-llm",
-    "term": "LLM",
-    "translation": "大语言模型",
-    "domain": "技术",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "78a9c59e-cbe8-451f-8674-ba122ab3c887",
+    "term": "华沙条约组织",
+    "translation": "Warsaw Pact",
+    "domain": "机构",
+    "note": "华约",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-rag",
-    "term": "RAG",
-    "translation": "检索增强生成",
-    "domain": "技术",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "0b5d81c2-c4c6-4df8-b0ee-feff10cce3ad",
+    "term": "华约",
+    "translation": "Warsaw Pact",
+    "domain": "机构",
+    "note": "Warsaw Treaty Organization",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   },
   {
-    "id": "term-prompt",
-    "term": "prompt",
-    "translation": "提示词",
-    "domain": "技术",
-    "createdAt": "2026-08-28T00:00:00.000Z",
-    "updatedAt": "2026-08-28T00:00:00.000Z"
+    "id": "8c7dc239-7ce5-4200-b1df-8a2c7e68f5ea",
+    "term": "欧洲委员会",
+    "translation": "Council of Europe",
+    "domain": "机构",
+    "note": "COE；勿与欧盟理事会混用",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "15ff0f7f-0d55-4fb8-943c-27b56ff25844",
+    "term": "波罗的海国家委员会",
+    "translation": "Council of the Baltic Sea States",
+    "domain": "机构",
+    "note": "CBSS",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "c9dec2f0-4250-4e3f-878c-a05dd7bed71e",
+    "term": "英联邦",
+    "translation": "the Commonwealth",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "3e97f891-d0df-4283-bda0-0f3b5a92a9bd",
+    "term": "独立国家联合体",
+    "translation": "Commonwealth of Independent States",
+    "domain": "机构",
+    "note": "独联体 / CIS",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "9682fa83-fc84-49cc-bc90-d56259122f07",
+    "term": "独联体",
+    "translation": "CIS",
+    "domain": "机构",
+    "note": "Commonwealth of Independent States",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "79b96012-a0aa-4d17-8dff-dd3e36639dbe",
+    "term": "阿拉伯国家联盟",
+    "translation": "League of Arab States",
+    "domain": "机构",
+    "note": "阿盟 / LAS",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f05a5888-dc9e-487f-853a-a3c0a9747ef3",
+    "term": "阿盟",
+    "translation": "LAS",
+    "domain": "机构",
+    "note": "League of Arab States",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "1eda9ea3-0e58-4f2c-81b7-ab95a8d96216",
+    "term": "海湾合作委员会",
+    "translation": "Gulf Cooperation Council",
+    "domain": "机构",
+    "note": "海合会 / GCC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "e3f34bba-83dc-4f4a-b39f-3c411cbe6347",
+    "term": "海合会",
+    "translation": "GCC",
+    "domain": "机构",
+    "note": "Gulf Cooperation Council",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "7034fc7c-98dc-49bb-8749-54a0aebb91ff",
+    "term": "伊斯兰合作组织",
+    "translation": "Organization of Islamic Cooperation",
+    "domain": "机构",
+    "note": "OIC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "63052440-8fa8-4e80-933c-16afbf1fbadf",
+    "term": "非洲联盟",
+    "translation": "African Union",
+    "domain": "机构",
+    "note": "非盟 / AU",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "4aca6b68-d4bb-406d-9610-d64939cecf76",
+    "term": "非盟",
+    "translation": "AU",
+    "domain": "机构",
+    "note": "African Union",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "a77d681b-24db-454d-b7dc-8dbcd35e02eb",
+    "term": "南亚区域合作联盟",
+    "translation": "South Asian Association for Regional Cooperation",
+    "domain": "机构",
+    "note": "南盟 / SAARC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "4f8073b9-d677-4ecf-9a9f-a01618ff2883",
+    "term": "南盟",
+    "translation": "SAARC",
+    "domain": "机构",
+    "note": "South Asian Association for Regional Cooperation",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "8a6ab61b-e125-431c-83bc-72bde5e756c1",
+    "term": "东南亚国家联盟",
+    "translation": "Association of Southeast Asian Nations",
+    "domain": "机构",
+    "note": "东盟 / ASEAN",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "bc95186d-8b5d-43da-93b1-d2cdcc8140df",
+    "term": "东盟",
+    "translation": "ASEAN",
+    "domain": "机构",
+    "note": "Association of Southeast Asian Nations",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "20364122-dccf-436e-b3c3-d68cdd89911e",
+    "term": "上海合作组织",
+    "translation": "Shanghai Cooperation Organization",
+    "domain": "机构",
+    "note": "上合组织 / SCO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "49532930-4ae6-4961-8866-9ef9c4756f70",
+    "term": "上合组织",
+    "translation": "SCO",
+    "domain": "机构",
+    "note": "Shanghai Cooperation Organization",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "ef667e9a-5ec9-4df4-a8a5-dc24a71ce748",
+    "term": "美洲国家组织",
+    "translation": "Organization of American States",
+    "domain": "机构",
+    "note": "OAS",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "23dd21fc-77b1-49fc-a2c7-d8750cfee068",
+    "term": "加勒比国家联盟",
+    "translation": "Association of Caribbean States",
+    "domain": "机构",
+    "note": "ACS",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "06b9ca40-330b-48ec-ab18-8f9bdadd475a",
+    "term": "国际移民组织",
+    "translation": "International Organization for Migration",
+    "domain": "机构",
+    "note": "IOM",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f6beb72c-ec6a-47c5-a861-6a77797cd85f",
+    "term": "国际原子能机构",
+    "translation": "International Atomic Energy Agency",
+    "domain": "机构",
+    "note": "IAEA",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "6cf0b2c1-e8a7-423e-94f2-b3c1f386df34",
+    "term": "各国议会联盟",
+    "translation": "Inter-Parliamentary Union",
+    "domain": "机构",
+    "note": "议联 / IPU",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "2dc06d00-a06b-4372-b29d-1aaf05099f67",
+    "term": "大赦国际",
+    "translation": "Amnesty International",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "8388803b-0675-40b1-bd5d-3021da025917",
+    "term": "国际刑警组织",
+    "translation": "INTERPOL",
+    "domain": "机构",
+    "note": "International Criminal Police Organization",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "bcfa4b4b-71ff-4e5a-b410-023e207a768b",
+    "term": "国际刑事法院",
+    "translation": "International Criminal Court",
+    "domain": "机构",
+    "note": "ICC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "e0598150-a435-4cb6-a58e-98ea4c211b44",
+    "term": "核供应国集团",
+    "translation": "Nuclear Suppliers Group",
+    "domain": "机构",
+    "note": "NSG",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "9fd3c1e3-f34d-422b-97a3-6d4b516521dc",
+    "term": "不结盟运动",
+    "translation": "Non-Aligned Movement",
+    "domain": "机构",
+    "note": "NAM",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "40a331ad-24ab-40df-a427-1b40909a332b",
+    "term": "七十七国集团",
+    "translation": "Group of 77",
+    "domain": "机构",
+    "note": "77 国集团",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "7aadf06a-7fd3-433f-8068-59471d6b9d22",
+    "term": "国际劳工组织",
+    "translation": "International Labour Organization",
+    "domain": "机构",
+    "note": "ILO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "ca7c5db3-3e0b-4919-9e68-04dee513a05e",
+    "term": "金砖国家",
+    "translation": "BRICS",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f382ea2f-f39b-4c4c-9e40-c88a8ad4d6f3",
+    "term": "亚洲开发银行",
+    "translation": "Asian Development Bank",
+    "domain": "机构",
+    "note": "亚行；英文亦作 ADB，勿与非洲开发银行混用",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "b8a6c3a9-7389-489a-8979-c0c184df6775",
+    "term": "亚行",
+    "translation": "Asian Development Bank",
+    "domain": "机构",
+    "note": "Asian Development Bank",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "a5b41bef-683c-40ad-9f68-e73f5e44cb14",
+    "term": "非洲开发银行",
+    "translation": "African Development Bank",
+    "domain": "机构",
+    "note": "AfDB",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "e1fc0885-a802-425d-b51e-2d9ddc61e733",
+    "term": "亚太经济合作组织",
+    "translation": "Asia-Pacific Economic Cooperation",
+    "domain": "机构",
+    "note": "亚太经合组织 / APEC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "4d11c172-0cab-4b73-95d4-6aa534045bf9",
+    "term": "亚太经合组织",
+    "translation": "APEC",
+    "domain": "机构",
+    "note": "Asia-Pacific Economic Cooperation",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f470434c-515a-4d92-a614-484bc77e89ce",
+    "term": "博鳌亚洲论坛",
+    "translation": "Boao Forum for Asia",
+    "domain": "机构",
+    "note": "BFA",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "262230d1-7045-49e3-b055-fdbac0d12419",
+    "term": "国际清算银行",
+    "translation": "Bank for International Settlements",
+    "domain": "机构",
+    "note": "BIS",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "3baa8b3a-8bbe-4f87-ac3a-719eef409b33",
+    "term": "关税及贸易总协定",
+    "translation": "General Agreement on Tariffs and Trade",
+    "domain": "机构",
+    "note": "关贸总协定 / GATT",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "3985d345-2789-4313-b653-b951d1df1591",
+    "term": "关贸总协定",
+    "translation": "GATT",
+    "domain": "机构",
+    "note": "General Agreement on Tariffs and Trade",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "6b614d8c-57ab-4310-8c08-a59537b48fb2",
+    "term": "欧洲中央银行",
+    "translation": "European Central Bank",
+    "domain": "机构",
+    "note": "ECB",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "aa80a49d-469b-4cb2-8958-2c7d8b451f46",
+    "term": "十五国集团",
+    "translation": "Group of 15",
+    "domain": "机构",
+    "note": "G15",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "203a4331-b985-4210-9b3e-4537a65512bc",
+    "term": "二十国集团",
+    "translation": "Group of 20",
+    "domain": "机构",
+    "note": "G20",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "47bdcc1b-70a5-452a-b81a-6e71234ac606",
+    "term": "二十四国集团",
+    "translation": "Group of 24",
+    "domain": "机构",
+    "note": "G24",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "89b64a54-fbed-4e35-a42f-fdcab84ce3d9",
+    "term": "国际航空运输协会",
+    "translation": "International Air Transport Association",
+    "domain": "机构",
+    "note": "IATA",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "fb8d148c-f086-4c4f-9bff-17ea62b595e2",
+    "term": "国际能源署",
+    "translation": "International Energy Agency",
+    "domain": "机构",
+    "note": "IEA",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "5274e4eb-12f6-4c8f-a436-5d8b09afe98c",
+    "term": "国际标准化组织",
+    "translation": "International Organization for Standardization",
+    "domain": "机构",
+    "note": "ISO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "61f3dff3-224b-4080-9ae1-f52146624d9a",
+    "term": "阿拉伯石油输出国组织",
+    "translation": "Organization of Arab Petroleum Exporting Countries",
+    "domain": "机构",
+    "note": "OAPEC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "39d104ba-aa18-487c-95b8-ec5ffd403ddf",
+    "term": "经济合作与发展组织",
+    "translation": "Organization for Economic Co-operation and Development",
+    "domain": "机构",
+    "note": "经合组织 / OECD",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "97bd4acf-83d1-4014-a196-d8ec65d0c693",
+    "term": "经合组织",
+    "translation": "OECD",
+    "domain": "机构",
+    "note": "Organization for Economic Co-operation and Development",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "6172f728-2b83-40e6-8964-36369fa1bf32",
+    "term": "石油输出国组织",
+    "translation": "Organization of the Petroleum Exporting Countries",
+    "domain": "机构",
+    "note": "欧佩克 / OPEC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "95b649b4-ac15-4069-9b8b-7602b581c719",
+    "term": "欧佩克",
+    "translation": "OPEC",
+    "domain": "机构",
+    "note": "Organization of the Petroleum Exporting Countries",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "19398458-883c-468a-ba3f-10565481167a",
+    "term": "世界银行",
+    "translation": "World Bank",
+    "domain": "机构",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f452b8cf-9e1e-4517-a28c-e6a8f38f4061",
+    "term": "世界海关组织",
+    "translation": "World Customs Organization",
+    "domain": "机构",
+    "note": "WCO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "0dfd0c78-77a7-402e-9f4a-bbb69ac64e98",
+    "term": "世界能源理事会",
+    "translation": "World Energy Council",
+    "domain": "机构",
+    "note": "WEC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "c72f3d5a-b4c3-44b7-bacd-ee35cc5fe26d",
+    "term": "大湄公河次区域",
+    "translation": "Greater Mekong Subregion",
+    "domain": "机构",
+    "note": "GMS",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "e5eef8d5-938d-4f52-bf41-13f6ff8847a6",
+    "term": "国际足球联合会",
+    "translation": "FIFA",
+    "domain": "机构",
+    "note": "Fédération Internationale de Football Association",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "21163284-32fb-456d-b582-793b0289b6a9",
+    "term": "无国界医生",
+    "translation": "Médecins Sans Frontières",
+    "domain": "机构",
+    "note": "Doctors Without Borders",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "62dd1a94-5e9c-41b0-97fc-494051c3a736",
+    "term": "红十字国际委员会",
+    "translation": "International Committee of the Red Cross",
+    "domain": "机构",
+    "note": "ICRC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f4d2cd38-915b-4562-b014-00d69dfef727",
+    "term": "国际奥林匹克委员会",
+    "translation": "International Olympic Committee",
+    "domain": "机构",
+    "note": "国际奥委会 / IOC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "173675b2-c8b9-4b82-9187-32a7febb5d30",
+    "term": "国际奥委会",
+    "translation": "IOC",
+    "domain": "机构",
+    "note": "International Olympic Committee",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "e1d337fa-7df3-48d6-8589-e716805f8274",
+    "term": "国际会计师联合会",
+    "translation": "International Federation of Accountants",
+    "domain": "机构",
+    "note": "IFAC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "ccb916cd-aa1f-4140-bf0c-a8160562956a",
+    "term": "国际联盟",
+    "translation": "League of Nations",
+    "domain": "机构",
+    "note": "国联",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "724446aa-7375-4dcc-873f-d8d2ba30d1d0",
+    "term": "联合国",
+    "translation": "United Nations",
+    "domain": "机构",
+    "note": "UN",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "28cca0d6-cfa9-41ca-b6e5-33bff2f6e1a3",
+    "term": "联合国宪章",
+    "translation": "Charter of the United Nations",
+    "domain": "机构",
+    "note": "UN Charter",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "5d962093-ca33-4737-9f51-80120122f530",
+    "term": "联合国大会",
+    "translation": "United Nations General Assembly",
+    "domain": "机构",
+    "note": "联大 / UNGA",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "d8be0576-52b2-407b-b876-60a705b5a618",
+    "term": "安全理事会",
+    "translation": "United Nations Security Council",
+    "domain": "机构",
+    "note": "安理会 / UNSC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "09866525-5aec-497d-85ff-134c8253b872",
+    "term": "安理会",
+    "translation": "UN Security Council",
+    "domain": "机构",
+    "note": "United Nations Security Council",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "28d3e417-b094-4701-860a-daa0ed97fd65",
+    "term": "经济及社会理事会",
+    "translation": "Economic and Social Council",
+    "domain": "机构",
+    "note": "ECOSOC",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "6cb9df75-ff5a-423e-85d7-43a4b996dd91",
+    "term": "联合国粮食及农业组织",
+    "translation": "Food and Agriculture Organization of the United Nations",
+    "domain": "机构",
+    "note": "粮农组织 / FAO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "bca62fe9-da19-4745-bec7-9d8505a9c9a1",
+    "term": "粮农组织",
+    "translation": "FAO",
+    "domain": "机构",
+    "note": "Food and Agriculture Organization of the United Nations",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "4686df87-1fce-4449-9cf2-123652a1f4ac",
+    "term": "国际法院",
+    "translation": "International Court of Justice",
+    "domain": "机构",
+    "note": "ICJ",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f5edaead-1886-4a9c-a52c-3bce485ea285",
+    "term": "国际农业发展基金",
+    "translation": "International Fund for Agricultural Development",
+    "domain": "机构",
+    "note": "IFAD",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "6cfa6a53-cc26-4889-bfd0-653eab7dbb2a",
+    "term": "国际货币基金组织",
+    "translation": "International Monetary Fund",
+    "domain": "机构",
+    "note": "IMF",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "65f21806-ffe6-49ae-837b-22e97c0c50f1",
+    "term": "国际民用航空组织",
+    "translation": "International Civil Aviation Organization",
+    "domain": "机构",
+    "note": "ICAO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "6e45656e-d2d4-4f4b-b726-acc964aa90c5",
+    "term": "国际海事组织",
+    "translation": "International Maritime Organization",
+    "domain": "机构",
+    "note": "IMO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "a350590b-1759-4fc7-944f-9c0a1bc1d456",
+    "term": "国际电信联盟",
+    "translation": "International Telecommunication Union",
+    "domain": "机构",
+    "note": "ITU",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "08482d5c-7406-41f0-a512-ae6c5bad709c",
+    "term": "联合国难民事务高级专员公署",
+    "translation": "Office of the United Nations High Commissioner for Refugees",
+    "domain": "机构",
+    "note": "UNHCR",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "d82007e4-d4fd-4cd5-b714-8f9163b64fb5",
+    "term": "联合国贸易和发展会议",
+    "translation": "United Nations Conference on Trade and Development",
+    "domain": "机构",
+    "note": "UNCTAD",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "dabad4bf-b3b7-4436-b5ec-9c091caaf6ff",
+    "term": "联合国环境规划署",
+    "translation": "United Nations Environment Programme",
+    "domain": "机构",
+    "note": "UNEP",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "a6863c11-bc1d-41f2-8bbf-5b18695c2909",
+    "term": "联合国开发计划署",
+    "translation": "United Nations Development Programme",
+    "domain": "机构",
+    "note": "UNDP",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "350aa28f-a518-419d-8185-dd37d8419ac5",
+    "term": "联合国人类住区规划署",
+    "translation": "United Nations Human Settlements Programme",
+    "domain": "机构",
+    "note": "UN-Habitat",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "96e53b88-7c88-4cc7-94eb-344ce1db28e7",
+    "term": "联合国人口基金",
+    "translation": "United Nations Population Fund",
+    "domain": "机构",
+    "note": "UNFPA",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "469937a2-b9d8-4424-8b31-90981e358b90",
+    "term": "联合国教育、科学及文化组织",
+    "translation": "United Nations Educational, Scientific and Cultural Organization",
+    "domain": "机构",
+    "note": "联合国教科文组织 / UNESCO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "397092e2-183c-41e9-8870-5a410ba3a5d4",
+    "term": "联合国教科文组织",
+    "translation": "UNESCO",
+    "domain": "机构",
+    "note": "United Nations Educational, Scientific and Cultural Organization",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "12ba4ea5-4eed-41a4-abc6-96d463e35896",
+    "term": "联合国儿童基金会",
+    "translation": "United Nations Children's Fund",
+    "domain": "机构",
+    "note": "UNICEF",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "d011b04c-52b6-4c37-9cdf-0fb08034b4ce",
+    "term": "联合国工业发展组织",
+    "translation": "United Nations Industrial Development Organization",
+    "domain": "机构",
+    "note": "UNIDO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "9142991d-48f0-4424-a530-f985b67abe5d",
+    "term": "万国邮政联盟",
+    "translation": "Universal Postal Union",
+    "domain": "机构",
+    "note": "UPU",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "e301870b-3224-45c3-96ac-2494d2c6699f",
+    "term": "世界粮食计划署",
+    "translation": "World Food Programme",
+    "domain": "机构",
+    "note": "WFP",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "99e6343d-1a4a-4128-b549-57f58a07a6df",
+    "term": "世界贸易组织",
+    "translation": "World Trade Organization",
+    "domain": "机构",
+    "note": "世贸组织 / WTO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "dfc19ed4-5f5f-4536-af9d-b6e92b2d3ac8",
+    "term": "世贸组织",
+    "translation": "WTO",
+    "domain": "机构",
+    "note": "World Trade Organization；勿与世界卫生组织 WHO 混用",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "0ecce9f5-3828-4eea-a379-d7efc56d88aa",
+    "term": "世界卫生组织",
+    "translation": "World Health Organization",
+    "domain": "机构",
+    "note": "世卫组织 / WHO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "99bb9d7a-b5db-4ac0-b3eb-a548bf3e8f74",
+    "term": "世卫组织",
+    "translation": "WHO",
+    "domain": "机构",
+    "note": "World Health Organization",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "5102814d-4d90-4edc-bfe0-4613983c0801",
+    "term": "世界气象组织",
+    "translation": "World Meteorological Organization",
+    "domain": "机构",
+    "note": "WMO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "ac2481dd-e5fd-461d-a75f-c76e8d7711d4",
+    "term": "世界知识产权组织",
+    "translation": "World Intellectual Property Organization",
+    "domain": "机构",
+    "note": "WIPO",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "e9475adc-725a-4501-aba7-c60c5395ef5b",
+    "term": "世界旅游组织",
+    "translation": "World Tourism Organization",
+    "domain": "机构",
+    "note": "UNWTO；勿与世贸组织 WTO 混用",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "d059fdd6-de1a-4264-b85c-a29f1a7a1297",
+    "term": "电子公告板",
+    "translation": "BBS",
+    "domain": "缩略词",
+    "note": "Bulletin Board System",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "659d5a8c-c6a1-43b7-9561-85ac1450d4ae",
+    "term": "全球定位系统",
+    "translation": "GPS",
+    "domain": "缩略词",
+    "note": "Global Positioning System",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "7220b02d-5b0a-4447-921e-d77ad6da90ca",
+    "term": "全球移动通信系统",
+    "translation": "GSM",
+    "domain": "缩略词",
+    "note": "Global System for Mobile Communications",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "5e8d98f2-0ef1-4258-bdb4-16a5a6669c8d",
+    "term": "计算机集成制造系统",
+    "translation": "CIMS",
+    "domain": "缩略词",
+    "note": "Computer Integrated Manufacturing System",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "16681660-9a6b-4043-a466-34d2de508da9",
+    "term": "磁盘操作系统",
+    "translation": "DOS",
+    "domain": "缩略词",
+    "note": "Disk Operating System",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "b818d60f-e436-4709-a8b2-da32800ebaa3",
+    "term": "智能交通系统",
+    "translation": "ITS",
+    "domain": "缩略词",
+    "note": "Intelligent Transportation System",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "e9f86b9c-f580-488b-8fbe-f16e246ea1a1",
+    "term": "国家导弹防御系统",
+    "translation": "NMD",
+    "domain": "缩略词",
+    "note": "National Missile Defense",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f3cba418-b456-4f80-b859-be9ce1d58770",
+    "term": "纳斯达克",
+    "translation": "NASDAQ",
+    "domain": "缩略词",
+    "note": "National Association of Securities Dealers Automated Quotations",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "67d4a425-ebc8-415b-a93a-d1c86d93ce7e",
+    "term": "首席执行官",
+    "translation": "CEO",
+    "domain": "缩略词",
+    "note": "Chief Executive Officer",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "414b6be1-161c-4740-b824-9bdeb10decc1",
+    "term": "首席财务官",
+    "translation": "CFO",
+    "domain": "缩略词",
+    "note": "Chief Financial Officer",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "fc39b6ad-2263-4d24-99f6-75767a44cdf8",
+    "term": "首席信息官",
+    "translation": "CIO",
+    "domain": "缩略词",
+    "note": "Chief Information Officer",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "dc7df745-0e8d-4d47-8cdd-944aba4ecd4f",
+    "term": "首席运营官",
+    "translation": "COO",
+    "domain": "缩略词",
+    "note": "Chief Operating Officer",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "91506733-d2a0-460e-94cc-b418c3b5c42a",
+    "term": "首席技术官",
+    "translation": "CTO",
+    "domain": "缩略词",
+    "note": "Chief Technology Officer",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "086e46b2-65d6-4956-99d1-87fc812b39c6",
+    "term": "注册会计师",
+    "translation": "CPA",
+    "domain": "缩略词",
+    "note": "Certified Public Accountant",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "4f56831d-118d-4dc5-a19a-1fbf69d45e12",
+    "term": "工商管理硕士",
+    "translation": "MBA",
+    "domain": "缩略词",
+    "note": "Master of Business Administration",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "63d58dfb-f171-4dbb-907e-7479c131b734",
+    "term": "公共管理硕士",
+    "translation": "MPA",
+    "domain": "缩略词",
+    "note": "Master of Public Administration",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "81ad0bfe-6e03-4fda-a86c-7d59e9a6c0da",
+    "term": "自动柜员机",
+    "translation": "ATM",
+    "domain": "缩略词",
+    "note": "Automated Teller Machine",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "af18ef9b-f707-44f0-b10b-1be086a0676c",
+    "term": "中央商务区",
+    "translation": "CBD",
+    "domain": "缩略词",
+    "note": "Central Business District",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "9338ba32-0f8d-466d-9f82-9894dbea97db",
+    "term": "国内生产总值",
+    "translation": "GDP",
+    "domain": "缩略词",
+    "note": "Gross Domestic Product",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "3fb02c97-abc8-490a-9060-592812bc8ba1",
+    "term": "国民生产总值",
+    "translation": "GNP",
+    "domain": "缩略词",
+    "note": "Gross National Product",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "35b81f8a-a374-4cd3-8fe6-a0467ce529ad",
+    "term": "大学英语等级考试",
+    "translation": "CET",
+    "domain": "缩略词",
+    "note": "College English Test",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "29d72f51-22d1-475b-ad68-b5ffd7ce53e7",
+    "term": "美国研究生入学考试",
+    "translation": "GRE",
+    "domain": "缩略词",
+    "note": "Graduate Record Examination",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "21f02155-2151-4526-85cd-2a82b6ea5d20",
+    "term": "全国英语等级考试",
+    "translation": "PETS",
+    "domain": "缩略词",
+    "note": "Public English Test System",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "adab06f5-ef66-45f0-9839-5f1622659c2a",
+    "term": "托福",
+    "translation": "TOEFL",
+    "domain": "缩略词",
+    "note": "Test of English as a Foreign Language",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "0f3292a1-87c6-4261-937b-6e1ce5c5569f",
+    "term": "学术能力评估测试",
+    "translation": "SAT",
+    "domain": "缩略词",
+    "note": "Scholastic Aptitude Test",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "cd0b5fc7-e5bb-429e-9fe9-a897eebcb53e",
+    "term": "平均学分绩点",
+    "translation": "GPA",
+    "domain": "缩略词",
+    "note": "Grade Point Average",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "6854ea3c-a0b8-40c0-a49f-698c5cbc74b1",
+    "term": "管理学研究生入学考试",
+    "translation": "GMAT",
+    "domain": "缩略词",
+    "note": "Graduate Management Admission Test",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "1ffde6b2-1f7d-4ef3-89b7-349e9a14f718",
+    "term": "法学院入学考试",
+    "translation": "LSAT",
+    "domain": "缩略词",
+    "note": "Law School Admission Test",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "32969ebb-ce0c-498a-8d44-7fd240488ca8",
+    "term": "医学院入学考试",
+    "translation": "MCAT",
+    "domain": "缩略词",
+    "note": "Medical College Admission Test",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "fcc80a9b-38aa-4e42-b3cd-265dbf676395",
+    "term": "艾滋病",
+    "translation": "AIDS",
+    "domain": "缩略词",
+    "note": "Acquired Immune Deficiency Syndrome",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "06cb9d10-a980-4b01-85cd-97350ea67e11",
+    "term": "空气污染指数",
+    "translation": "API",
+    "domain": "缩略词",
+    "note": "Air Pollution Index",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "23862522-19a1-4190-a637-c10eed247af2",
+    "term": "码分多址",
+    "translation": "CDMA",
+    "domain": "缩略词",
+    "note": "Code Division Multiple Access",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f2449dd8-1dcb-40d8-ad5f-3c48449b83ef",
+    "term": "邮政特快专递",
+    "translation": "EMS",
+    "domain": "缩略词",
+    "note": "Express Mail Service",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "3f84fab2-4b59-4add-8303-301fcd2f7ee9",
+    "term": "情商",
+    "translation": "EQ",
+    "domain": "缩略词",
+    "note": "Emotional Quotient",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "50c77c96-518b-4387-adfc-90fd3c18bb76",
+    "term": "智商",
+    "translation": "IQ",
+    "domain": "缩略词",
+    "note": "Intelligence Quotient",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "d8658b9c-3d78-498a-93f3-87707f0686a8",
+    "term": "信息技术",
+    "translation": "IT",
+    "domain": "缩略词",
+    "note": "Information Technology",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "16b8be2e-9c31-4ff9-b4bd-318d071dcad9",
+    "term": "办公自动化",
+    "translation": "OA",
+    "domain": "缩略词",
+    "note": "Office Automation",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "6b2d7410-1d21-4f80-9cb6-01a5783c0290",
+    "term": "原始设备制造商",
+    "translation": "OEM",
+    "domain": "缩略词",
+    "note": "Original Equipment Manufacturer",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "42b1af2f-6992-4983-8e76-2c5e5c657508",
+    "term": "个人计算机",
+    "translation": "PC",
+    "domain": "缩略词",
+    "note": "Personal Computer",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "4b020a1e-8a9a-4f2a-98f9-729d76a640b9",
+    "term": "视频点播",
+    "translation": "VOD",
+    "domain": "缩略词",
+    "note": "Video on Demand",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "99f583b7-bd4f-4d5b-82b3-15452e1ea059",
+    "term": "尽快",
+    "translation": "ASAP",
+    "domain": "缩略词",
+    "note": "as soon as possible",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "968e0138-8318-4e73-b371-c913fd31013e",
+    "term": "供参考",
+    "translation": "FYI",
+    "domain": "缩略词",
+    "note": "for your information",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "823b809c-f5b8-4cba-8eac-fd21a2466b86",
+    "term": "请回复",
+    "translation": "RSVP",
+    "domain": "缩略词",
+    "note": "Répondez s'il vous plaît",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "fec0f046-30e3-4d29-89da-98457a49ce45",
+    "term": "成本加运费",
+    "translation": "CFR",
+    "domain": "缩略词",
+    "note": "Cost and Freight；旧称 C&F",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "4192c1d5-65d5-4e18-921b-badc8eddb577",
+    "term": "电汇",
+    "translation": "T/T",
+    "domain": "缩略词",
+    "note": "telegraphic transfer",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "5273962e-2046-49a3-b5b2-f220a7bea436",
+    "term": "付款交单",
+    "translation": "D/P",
+    "domain": "缩略词",
+    "note": "documents against payment",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "5a984827-c464-41bf-9bdb-809ef1fd59db",
+    "term": "承兑交单",
+    "translation": "D/A",
+    "domain": "缩略词",
+    "note": "documents against acceptance",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "b78be1be-2777-40ed-b051-9c1105a5f3cb",
+    "term": "原产地证书",
+    "translation": "C/O",
+    "domain": "缩略词",
+    "note": "certificate of origin",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "d0251ee1-9032-4e4a-98df-a723f5b71e4e",
+    "term": "普惠制",
+    "translation": "GSP",
+    "domain": "缩略词",
+    "note": "Generalized System of Preferences",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "75da678f-ac05-404c-8ba8-25362bd9d1e5",
+    "term": "毛重",
+    "translation": "G.W.",
+    "domain": "缩略词",
+    "note": "gross weight",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "0f737a5d-0715-498c-9dfb-11ae29182d40",
+    "term": "净重",
+    "translation": "N.W.",
+    "domain": "缩略词",
+    "note": "net weight",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "49834178-de81-437d-a842-a23a2fe46176",
+    "term": "报关单",
+    "translation": "C/D",
+    "domain": "缩略词",
+    "note": "customs declaration",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "fff2bf7b-5690-4400-98b7-46652fca9c84",
+    "term": "装箱单",
+    "translation": "P/L",
+    "domain": "缩略词",
+    "note": "packing list",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "27762266-574e-4724-9371-48f6a116fcc7",
+    "term": "信用证",
+    "translation": "L/C",
+    "domain": "缩略词",
+    "note": "letter of credit",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "8154b48e-a9dc-44a6-baa7-99e907a883b7",
+    "term": "提单",
+    "translation": "B/L",
+    "domain": "缩略词",
+    "note": "bill of lading",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "ab11e76a-6af1-49ad-af43-ecd19ab4decf",
+    "term": "离岸价",
+    "translation": "FOB",
+    "domain": "缩略词",
+    "note": "free on board",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "eb0c782d-52f1-4960-ad25-9dd9d7b7a3a8",
+    "term": "到岸价",
+    "translation": "CIF",
+    "domain": "缩略词",
+    "note": "cost, insurance and freight",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "4b6e7803-38a9-4686-bc7e-1d2e8e4e16a8",
+    "term": "销售确认书",
+    "translation": "S/C",
+    "domain": "缩略词",
+    "note": "sales confirmation / sales contract",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "1ad583a1-771e-4be9-b254-9486cb47877f",
+    "term": "美国国家航空航天局",
+    "translation": "NASA",
+    "domain": "缩略词",
+    "note": "National Aeronautics and Space Administration",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "a64195cc-c79b-49ea-8be9-a8ae4a120369",
+    "term": "联邦调查局",
+    "translation": "FBI",
+    "domain": "缩略词",
+    "note": "Federal Bureau of Investigation",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "5a3d58bc-1e65-483e-9b29-9e3ac1560a94",
+    "term": "中央情报局",
+    "translation": "CIA",
+    "domain": "缩略词",
+    "note": "Central Intelligence Agency",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "bd2d8320-5a9b-4865-a0c3-c0cb136084ab",
+    "term": "美国食品药品管理局",
+    "translation": "FDA",
+    "domain": "缩略词",
+    "note": "Food and Drug Administration",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "97f9489f-c9b9-4752-82f1-b73279aa251a",
+    "term": "美国农业部",
+    "translation": "USDA",
+    "domain": "缩略词",
+    "note": "United States Department of Agriculture",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "12db24d9-b075-427f-a4d9-81ee065bfd79",
+    "term": "美国国税局",
+    "translation": "IRS",
+    "domain": "缩略词",
+    "note": "Internal Revenue Service",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "9028f7df-1fcb-433e-bc54-e1a29814e057",
+    "term": "美国之音",
+    "translation": "VOA",
+    "domain": "缩略词",
+    "note": "Voice of America",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "0427ed4f-0ba5-438b-b3cb-4f98d98010ce",
+    "term": "哥伦比亚广播公司",
+    "translation": "CBS",
+    "domain": "缩略词",
+    "note": "Columbia Broadcasting System",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "43b02216-384e-4fc1-8502-32ff5a2564e7",
+    "term": "英国广播公司",
+    "translation": "BBC",
+    "domain": "缩略词",
+    "note": "British Broadcasting Corporation",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "95433f59-2946-4c9a-9146-1c7350e48cfd",
+    "term": "中华人民共和国",
+    "translation": "PRC",
+    "domain": "缩略词",
+    "note": "People's Republic of China",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "b9f0ff78-004a-48a1-a793-7503eda3830f",
+    "term": "格林尼治标准时间",
+    "translation": "GMT",
+    "domain": "缩略词",
+    "note": "Greenwich Mean Time",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "feef5067-ea09-4bd9-a318-40089a3489a8",
+    "term": "第二次世界大战",
+    "translation": "WWII",
+    "domain": "缩略词",
+    "note": "World War II",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "e0cb9af0-b91e-41ac-9300-038230f0ab18",
+    "term": "国有企业",
+    "translation": "SOE",
+    "domain": "缩略词",
+    "note": "state-owned enterprise",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "12b1df34-65fa-4d69-a7a7-ea3a7df62667",
+    "term": "外商投资企业",
+    "translation": "FIE",
+    "domain": "缩略词",
+    "note": "foreign-invested enterprise",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "ca3f88be-b81d-4ba7-a5a2-151803964aa2",
+    "term": "外商直接投资",
+    "translation": "FDI",
+    "domain": "缩略词",
+    "note": "foreign direct investment",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "3dc380ac-a1bd-4a28-b460-7045895c21e7",
+    "term": "合资企业",
+    "translation": "JV",
+    "domain": "缩略词",
+    "note": "joint venture",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f8573a60-fe9f-41c7-80da-2a8b9e2c6ba0",
+    "term": "经济特区",
+    "translation": "SEZ",
+    "domain": "缩略词",
+    "note": "special economic zone",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "eb668627-8148-4e76-a8b4-99d628daf00c",
+    "term": "全面质量管理",
+    "translation": "TQC",
+    "domain": "缩略词",
+    "note": "total quality control",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "a89726a2-97dc-4da8-9c5b-35a7a7c988ed",
+    "term": "企业形象",
+    "translation": "CI",
+    "domain": "缩略词",
+    "note": "corporate image",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "41c93a0b-1984-4fd2-8d21-3fa9d7d73665",
+    "term": "电子商务",
+    "translation": "e-business",
+    "domain": "缩略词",
+    "note": "E-business",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "5bd47295-8f00-409b-b180-4a36aa8b0c73",
+    "term": "计算机辅助设计",
+    "translation": "CAD",
+    "domain": "缩略词",
+    "note": "computer-aided design",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "f9260c5a-26be-44ae-8359-afeec590f70a",
+    "term": "有线电视",
+    "translation": "CATV",
+    "domain": "缩略词",
+    "note": "cable television",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "266e3d18-35c8-4619-bf4a-95d92b559856",
+    "term": "国际直拨",
+    "translation": "IDD",
+    "domain": "缩略词",
+    "note": "international direct dialing",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "1e3db821-ff6e-47be-8b75-160ba84c2986",
+    "term": "心肺复苏",
+    "translation": "CPR",
+    "domain": "缩略词",
+    "note": "cardiopulmonary resuscitation",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "0f2a36c4-f8d8-444e-ab33-567c185035fc",
+    "term": "心电图",
+    "translation": "ECG",
+    "domain": "缩略词",
+    "note": "electrocardiogram；美式亦作 EKG",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
+  },
+  {
+    "id": "b10fdd8f-3525-461a-8c14-02a5fa438024",
+    "term": "公共关系",
+    "translation": "PR",
+    "domain": "缩略词",
+    "note": "public relations",
+    "createdAt": "2026-10-05T03:43:28.674Z",
+    "updatedAt": "2026-10-05T03:43:28.674Z"
   }
 ]

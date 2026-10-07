@@ -1,6 +1,7 @@
-import { resolveApiKey, resolveBaseUrl, defaultModel } from "@/lib/minimax";
+import { resolveModelAccess } from "@/lib/model-access";
 import { readGlossary } from "@/lib/glossary-store";
 import { runAgentPipeline } from "@/lib/pipeline";
+import { trialUsedCookie } from "@/lib/trial";
 
 function encodeEvent(event: string, data: unknown) {
   return `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
@@ -12,20 +13,39 @@ export async function POST(request: Request) {
     domain?: string;
     comparePrompts?: boolean;
     apiKey?: string;
+    provider?: string;
     region?: "cn" | "global" | "custom";
     customBaseUrl?: string;
     model?: string;
     temperature?: number;
+    direction?: "zh-en" | "en-zh";
   };
 
   const source = body.text?.trim() ?? "";
   if (!source) {
-    return Response.json({ error: "请先输入中文原文" }, { status: 400 });
+    return Response.json({ error: "请先输入原文" }, { status: 400 });
   }
 
-  const apiKey = resolveApiKey(body.apiKey ?? request.headers.get("x-minimax-key"));
+  let access;
+  try {
+    access = resolveModelAccess(request, body);
+  } catch (error) {
+    return Response.json(
+      { error: error instanceof Error ? error.message : "模型配置无效" },
+      { status: 400 },
+    );
+  }
+  if (!access.ok) {
+    return Response.json({ error: access.error }, { status: access.status });
+  }
+
   const glossary = await readGlossary();
   const encoder = new TextEncoder();
+  const headers: Record<string, string> = {
+    "Content-Type": "text/event-stream; charset=utf-8",
+    "Cache-Control": "no-cache, no-transform",
+  };
+  if (access.usedHostKey) headers["Set-Cookie"] = trialUsedCookie();
 
   const stream = new ReadableStream({
     async start(controller) {
@@ -34,19 +54,19 @@ export async function POST(request: Request) {
       };
 
       try {
+        emit("access", { mode: access.usedHostKey ? "trial" : "user" });
         await runAgentPipeline({
           source,
           domain: body.domain,
-          comparePrompts: Boolean(body.comparePrompts),
+          comparePrompts: false,
+          direction: body.direction,
           glossary,
-          settings: apiKey
-            ? {
-                apiKey,
-                baseUrl: resolveBaseUrl(body.region ?? "cn", body.customBaseUrl),
-                model: body.model?.trim() || defaultModel(),
-                temperature: body.temperature ?? 0.2,
-              }
-            : null,
+          settings: {
+            apiKey: access.apiKey,
+            baseUrl: access.baseUrl,
+            model: access.model,
+            temperature: body.temperature ?? 0.2,
+          },
           emit,
         });
         controller.close();
@@ -59,10 +79,5 @@ export async function POST(request: Request) {
     },
   });
 
-  return new Response(stream, {
-    headers: {
-      "Content-Type": "text/event-stream; charset=utf-8",
-      "Cache-Control": "no-cache, no-transform",
-    },
-  });
+  return new Response(stream, { headers });
 }
